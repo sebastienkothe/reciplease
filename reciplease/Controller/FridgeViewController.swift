@@ -16,20 +16,37 @@ class FridgeViewController: BaseViewController {
     @IBOutlet weak var ingredientsTableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
 
-    
-    static let notification = Notification.Name("ingredientsHasBeenChanged")
-    
-    private let fridgeService = FridgeService()
+    var ingredients: [String] = [] {
+        didSet {
+            ingredientsTableView.reloadData()
+        }
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ingredientsTableView.dataSource = self
-        ingredientsTableView.delegate = self
-        ingredientTextField.delegate = self
+        
+        let nib = UINib(nibName: .fridgeTableViewCell, bundle: nil)
+        ingredientsTableView.register(nib, forCellReuseIdentifier: .fridgeCell)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(onNotification(_:)), name: FridgeViewController.notification, object: nil)
+    @IBAction func didTapOnAddIngredientButton() {
+        guard let ingredient = ingredientTextField.text?.trimmingCharacters(in: .whitespaces) else { return }
+        
+        for ingredientFromIngredientsArray in ingredients {
+            guard ingredient.lowercased() != ingredientFromIngredientsArray.lowercased() else {
+                handleError(error: .valueAlreadyExists)
+                return
+            }
+        }
+        
+        ingredients.append(ingredient)
+        //ingredientsTableView.reloadData()
+        ingredientTextField.text = String()
+    }
+    
+    @IBAction func didTapOnClearButton(_ sender: Any) {
+        ingredients.removeAll()
     }
     
     @IBAction func didTapOnSearchForRecipesButton() {
@@ -38,16 +55,6 @@ class FridgeViewController: BaseViewController {
         searchForRecipes()
     }
     
-    @IBAction func didTapOnClearButton(_ sender: Any) {
-        fridgeService.ingredients.removeAll()
-    }
-    
-    @IBAction func didTapOnAddIngredientButton() {
-        guard let ingredient = ingredientTextField.text else { return }
-        guard ingredient.trimmingCharacters(in: .whitespaces) != "" else { return }
-        
-        fridgeService.ingredients.append(ingredient)
-    }
     
     @objc func onNotification(_ notification: Notification) {
         ingredientsTableView.reloadData()
@@ -56,7 +63,7 @@ class FridgeViewController: BaseViewController {
     func searchForRecipes() {
         let recipeNetworkManager = RecipeNetworkManager()
         
-        recipeNetworkManager.fetchRecipesFrom(fridgeService.ingredients, completion: { [weak self] (result) in
+        recipeNetworkManager.fetchRecipesFrom(ingredients, completion: { [weak self] (result) in
             guard let self = self else { return }
             
             DispatchQueue.main.async {
@@ -78,12 +85,13 @@ class FridgeViewController: BaseViewController {
 extension FridgeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fridgeService.ingredients.count
+        return ingredients.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientCell") else { return UITableViewCell() }
-        cell.textLabel?.text = fridgeService.ingredients[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: .fridgeCell, for: indexPath) as? FridgeTableViewCell else { return UITableViewCell() }
+        
+        cell.configure(withIngredient: ingredients[indexPath.row])
         return cell
     }
     

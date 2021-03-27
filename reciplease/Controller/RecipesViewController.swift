@@ -73,12 +73,11 @@ extension RecipesViewController: UITableViewDataSource {
         
         let recipe = recipes[indexPath.row]
         cell.configure(recipe: recipe)
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 200
     }
     
 }
