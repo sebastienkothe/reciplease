@@ -53,7 +53,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="OIW-Qh-W2t">
-                                <rect key="frame" x="0.0" y="155" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="204" width="320" height="60"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DEi-L9-KNY">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
@@ -114,22 +114,22 @@
                                 <rect key="frame" x="141.5" y="455.5" width="37" height="37"/>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPb-RV-jtX">
-                                <rect key="frame" x="0.0" y="44" width="320" height="101"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="150"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="2mV-bh-qZF">
-                                        <rect key="frame" x="10" y="10" width="300" height="71"/>
+                                        <rect key="frame" x="10" y="10" width="300" height="120"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's in your fridge ?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gn-9r-kD2">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="24"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="68"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="Q5f-pr-gtH">
-                                                <rect key="frame" x="0.0" y="36" width="300" height="35"/>
+                                                <rect key="frame" x="0.0" y="80" width="300" height="40"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lemon, Cheese, Sausages..." textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="brg-ha-Kts">
-                                                        <rect key="frame" x="0.0" y="0.0" width="231.5" height="35"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="231.5" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
@@ -137,7 +137,7 @@
                                                         </connections>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSN-6u-YFa" customClass="CustomButton" customModule="reciplease" customModuleProvider="target">
-                                                        <rect key="frame" x="249.5" y="0.0" width="50.5" height="35"/>
+                                                        <rect key="frame" x="249.5" y="0.0" width="50.5" height="40"/>
                                                         <color key="backgroundColor" red="0.34943169359999998" green="0.57761985059999998" blue="0.38427710529999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <state key="normal" title="  Add  ">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -148,7 +148,7 @@
                                                     </button>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="23p-py-qxW"/>
+                                                    <constraint firstAttribute="height" constant="40" id="23p-py-qxW"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
@@ -161,10 +161,11 @@
                                     <constraint firstAttribute="bottom" secondItem="2mV-bh-qZF" secondAttribute="bottom" constant="20" id="L41-jh-FzF"/>
                                     <constraint firstItem="2mV-bh-qZF" firstAttribute="top" secondItem="gPb-RV-jtX" secondAttribute="top" constant="10" id="NpI-uh-OTl"/>
                                     <constraint firstItem="2mV-bh-qZF" firstAttribute="leading" secondItem="gPb-RV-jtX" secondAttribute="leading" constant="10" id="tPV-10-qxK"/>
+                                    <constraint firstAttribute="height" constant="150" id="vfd-v7-ofP"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oFq-5c-Q0a">
-                                <rect key="frame" x="0.0" y="225" width="320" height="209"/>
+                                <rect key="frame" x="0.0" y="274" width="320" height="160"/>
                                 <color key="backgroundColor" red="0.2116055489" green="0.200034976" blue="0.1960756481" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <outlet property="dataSource" destination="sDG-KH-NgG" id="nta-OG-eEJ"/>
@@ -174,6 +175,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="glY-L9-70w"/>
                         <color key="backgroundColor" red="0.2116055489" green="0.200034976" blue="0.1960756481" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="J99-nz-6oy" firstAttribute="leading" secondItem="glY-L9-70w" secondAttribute="leading" constant="15" id="2aw-Qo-1Oh"/>
                             <constraint firstItem="gPb-RV-jtX" firstAttribute="leading" secondItem="glY-L9-70w" secondAttribute="leading" id="6bB-Ow-Mov"/>
@@ -191,6 +193,9 @@
                             <constraint firstItem="oFq-5c-Q0a" firstAttribute="leading" secondItem="glY-L9-70w" secondAttribute="leading" id="wHx-xu-muG"/>
                             <constraint firstItem="oFq-5c-Q0a" firstAttribute="top" secondItem="OIW-Qh-W2t" secondAttribute="bottom" constant="10" id="x4H-TR-h1P"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="cLf-Zx-MU7" appends="YES" id="YD1-Zn-Mpv"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Reciplease" id="u3A-Ce-nai"/>
                     <connections>
@@ -204,6 +209,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UiE-h4-tKN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="cLf-Zx-MU7">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="sDG-KH-NgG" id="jdS-FE-WZO"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1196.25" y="-1021.4788732394367"/>
         </scene>

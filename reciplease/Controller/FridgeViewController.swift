@@ -9,27 +9,23 @@ import UIKit
 
 class FridgeViewController: BaseViewController {
     
-    @IBOutlet weak var ingredientTextField: UITextField!
+    // MARK: - Outlets
+    @IBOutlet private weak var ingredientTextField: UITextField!
     @IBOutlet private weak var addButton: UIButton!
     @IBOutlet private weak var searchButton: UIButton!
     @IBOutlet private weak var clearButton: UIButton!
-    @IBOutlet weak var ingredientsTableView: UITableView!
+    @IBOutlet private weak var ingredientsTableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
-    var ingredients: [String] = [] {
+    // MARK: - Properties
+    private var ingredients: [String] = [] {
         didSet {
             ingredientsTableView.reloadData()
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let nib = UINib(nibName: .fridgeTableViewCell, bundle: nil)
-        ingredientsTableView.register(nib, forCellReuseIdentifier: .fridgeCell)
-    }
-    
-    @IBAction func didTapOnAddIngredientButton() {
+    // MARK: - Actions
+    @IBAction private func didTapOnAddIngredientButton() {
         guard let ingredient = ingredientTextField.text?.trimmingCharacters(in: .whitespaces) else { return }
         
         for ingredientFromIngredientsArray in ingredients {
@@ -40,26 +36,28 @@ class FridgeViewController: BaseViewController {
         }
         
         ingredients.append(ingredient)
-        //ingredientsTableView.reloadData()
         ingredientTextField.text = String()
     }
     
-    @IBAction func didTapOnClearButton(_ sender: Any) {
+    @IBAction private func didTapOnClearButton(_ sender: Any) {
         ingredients.removeAll()
     }
     
-    @IBAction func didTapOnSearchForRecipesButton() {
+    @IBAction private func didTapOnSearchForRecipesButton() {
         // To show the activity  indicator and hide the button
         toggleActivityIndicator(shown: true, activityIndicator: activityIndicator, button: searchButton)
         searchForRecipes()
     }
     
-    
-    @objc func onNotification(_ notification: Notification) {
-        ingredientsTableView.reloadData()
+    // MARK: - Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let nib = UINib(nibName: .fridgeTableViewCell, bundle: nil)
+        ingredientsTableView.register(nib, forCellReuseIdentifier: .fridgeCell)
     }
     
-    func searchForRecipes() {
+    private func searchForRecipes() {
         let recipeService = RecipeService()
         
         recipeService.fetchRecipesFrom(ingredients) { [weak self] (success, recipeResponse) in
@@ -73,13 +71,11 @@ class FridgeViewController: BaseViewController {
                 } else {
                     self.handleError(.noRecipe)
                 }
-                
             }
         }
     }
     
 }
-
 
 extension FridgeViewController: UITableViewDataSource {
     
@@ -120,6 +116,11 @@ extension FridgeViewController: UITextFieldDelegate {
         }
         return true
     }
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        ingredientTextField.resignFirstResponder()
+    }
+    
 }
 
 
