@@ -12,6 +12,7 @@ extension String {
     static let fridgeCell = "FridgeCell"
     static let recipesTableViewCell = "RecipesTableViewCell"
     static let recipesCell = "RecipesCell"
+    static let segueGoToRecipesList = "GoToRecipesList"
     
     var isBlank: Bool {
         return self.trimmingCharacters(in: .whitespaces) == String() ? true : false

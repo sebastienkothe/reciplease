@@ -15,13 +15,12 @@ class FridgeViewController: BaseViewController {
     @IBOutlet private weak var clearButton: UIButton!
     @IBOutlet weak var ingredientsTableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
-
+    
     var ingredients: [String] = [] {
         didSet {
             ingredientsTableView.reloadData()
         }
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +34,7 @@ class FridgeViewController: BaseViewController {
         
         for ingredientFromIngredientsArray in ingredients {
             guard ingredient.lowercased() != ingredientFromIngredientsArray.lowercased() else {
-                handleError(error: .valueAlreadyExists)
+                handleError(.valueAlreadyExists)
                 return
             }
         }
@@ -61,26 +60,26 @@ class FridgeViewController: BaseViewController {
     }
     
     func searchForRecipes() {
-        let recipeNetworkManager = RecipeNetworkManager()
+        let recipeService = RecipeService()
         
-        recipeNetworkManager.fetchRecipesFrom(ingredients, completion: { [weak self] (result) in
+        recipeService.fetchRecipesFrom(ingredients) { [weak self] (success, recipeResponse) in
             guard let self = self else { return }
             
             DispatchQueue.main.async {
                 self.toggleActivityIndicator(shown: false, activityIndicator: self.activityIndicator, button: self.searchButton)
-                switch result {
-                case .success(let recipeResponse):
-                    let recipes = recipeResponse.hits.map { $0.recipe }
-                    self.performSegue(withIdentifier: "goToRecipeList", sender: recipes)
-                    
-                case .failure(let error):
-                    self.handleError(error: error)
+                if success {
+                    let recipes = recipeResponse?.hits.map { $0.recipe }
+                    self.performSegue(withIdentifier: .segueGoToRecipesList, sender: recipes)
+                } else {
+                    self.handleError(.noRecipe)
                 }
+                
             }
-        })
-        
+        }
     }
+    
 }
+
 
 extension FridgeViewController: UITableViewDataSource {
     

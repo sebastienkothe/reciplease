@@ -21,17 +21,8 @@ class RecipeUrlProvider: RecipeUrlProviderProtocol {
             URLQueryItem(name: "from", value: "0"),
             URLQueryItem(name: "to", value: "10")
         ]
-        
-        var ingredientsFromIngredientsArray = ""
-        for ingredient in ingredients {
-            if ingredient == ingredients.last {
-                ingredientsFromIngredientsArray += "\(ingredient)"
-            } else {
-                ingredientsFromIngredientsArray += "\(ingredient),"
-            }
-        }
-        
-        let queryItem = URLQueryItem(name: "q", value: ingredientsFromIngredientsArray)
+                
+        let queryItem = URLQueryItem(name: "q", value: ingredients.joined(separator: ","))
         urlComponents.queryItems?.append(queryItem)
         
         return urlComponents.url

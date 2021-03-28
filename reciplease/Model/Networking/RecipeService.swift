@@ -22,7 +22,7 @@ final class RecipeService {
         self.recipeUrlProvider = recipeUrlProvider
     }
     
-    func fetchRecipes(ingredients: [String], completion: @escaping (Bool, RecipeResponse?) -> Void) {
+    func fetchRecipesFrom(_ ingredients: [String], completion: @escaping (Bool, RecipeResponse?) -> Void) {
         
         guard let url = buildRecipeUrl(ingredients: ingredients) else { return }
         

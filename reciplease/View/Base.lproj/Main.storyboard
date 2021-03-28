@@ -200,7 +200,7 @@
                         <outlet property="ingredientTextField" destination="brg-ha-Kts" id="3Pz-Sj-MRe"/>
                         <outlet property="ingredientsTableView" destination="oFq-5c-Q0a" id="a6b-BX-T4v"/>
                         <outlet property="searchButton" destination="J99-nz-6oy" id="ITY-2p-1MT"/>
-                        <segue destination="ALp-fP-R5g" kind="show" identifier="goToRecipeList" id="TDv-4w-aN8"/>
+                        <segue destination="ALp-fP-R5g" kind="show" identifier="GoToRecipesList" id="TDv-4w-aN8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UiE-h4-tKN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

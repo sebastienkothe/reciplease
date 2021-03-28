@@ -27,7 +27,6 @@
 		839CF20C260FD89B00276316 /* RecipeSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CF20B260FD89B00276316 /* RecipeSession.swift */; };
 		839CF216260FDD6C00276316 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CF215260FDD6C00276316 /* RecipeService.swift */; };
 		83C04CDD25FE1F16008094BE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C04CDC25FE1F16008094BE /* BaseViewController.swift */; };
-		83C04CF425FE3AC0008094BE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C04CF325FE3AC0008094BE /* NetworkError.swift */; };
 		83C04CFD25FE6318008094BE /* RecipeUrlProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C04CFC25FE6318008094BE /* RecipeUrlProvider.swift */; };
 		83C04D0825FF48D8008094BE /* RecipeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C04D0725FF48D8008094BE /* RecipeResponse.swift */; };
 		83C04D1025FF4EAB008094BE /* RecipeUrlProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C04D0F25FF4EAB008094BE /* RecipeUrlProviderProtocol.swift */; };
@@ -82,7 +81,6 @@
 		839CF20B260FD89B00276316 /* RecipeSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSession.swift; sourceTree = "<group>"; };
 		839CF215260FDD6C00276316 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
 		83C04CDC25FE1F16008094BE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		83C04CF325FE3AC0008094BE /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		83C04CFC25FE6318008094BE /* RecipeUrlProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeUrlProvider.swift; sourceTree = "<group>"; };
 		83C04D0725FF48D8008094BE /* RecipeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResponse.swift; sourceTree = "<group>"; };
 		83C04D0F25FF4EAB008094BE /* RecipeUrlProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeUrlProviderProtocol.swift; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 			children = (
 				83C04D0625FF48BA008094BE /* DataModel */,
 				83C04CFB25FE626E008094BE /* Data */,
-				83C04CF225FE3AB1008094BE /* Enum */,
 				83C04CE425FE231F008094BE /* Networking */,
 				834DE8F225FB6E5E002B04BE /* Protocol */,
 			);
@@ -251,14 +248,6 @@
 				839CF20B260FD89B00276316 /* RecipeSession.swift */,
 			);
 			path = Networking;
-			sourceTree = "<group>";
-		};
-		83C04CF225FE3AB1008094BE /* Enum */ = {
-			isa = PBXGroup;
-			children = (
-				83C04CF325FE3AC0008094BE /* NetworkError.swift */,
-			);
-			path = Enum;
 			sourceTree = "<group>";
 		};
 		83C04CFB25FE626E008094BE /* Data */ = {
@@ -478,7 +467,6 @@
 				83258E5925F220D900B8E8AF /* SceneDelegate.swift in Sources */,
 				83E255D4260F85960090778B /* String.swift in Sources */,
 				83C04D0825FF48D8008094BE /* RecipeResponse.swift in Sources */,
-				83C04CF425FE3AC0008094BE /* NetworkError.swift in Sources */,
 				83CF62E02604902D005B0865 /* RecipesTableViewCell.swift in Sources */,
 				83258E9725F2248D00B8E8AF /* FridgeViewController.swift in Sources */,
 			);
