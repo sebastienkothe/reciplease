@@ -8,17 +8,6 @@
 import UIKit
 import Kingfisher
 
-
-//class RecipeDataContainer {
-//    init(recipe: Recipe, imageData: Data?) {
-//        self.recipe = recipe
-//        self.imageData = imageData
-//    }
-//
-//    let recipe: Recipe
-//    var imageData: Data?
-//}
-
 class RecipesViewController: BaseViewController {
     @IBOutlet weak var recipesTableView: UITableView!
     
@@ -31,30 +20,6 @@ class RecipesViewController: BaseViewController {
         let nibName = UINib(nibName: .recipesTableViewCell, bundle: nil)
         recipesTableView.register(nibName, forCellReuseIdentifier: .recipesCell)
     }
-    
-    func fetchImage(url: String , completed: @escaping (UIImage) -> ()) {
-        let imageURL = URL(string: url)
-        var image: UIImage?
-        if let url = imageURL {
-            let imageData = try? Data(contentsOf: url)
-            DispatchQueue.global(qos: .userInitiated).async {
-                
-                DispatchQueue.main.async {
-                    if imageData != nil {
-                        image = UIImage(data: imageData!)
-                        completed(image!)
-                        
-                    }
-                    else {
-                        completed(UIImage(named: "cancel-red")!)
-                    }
-                    
-                }
-            }
-        }
-    }
-    
-    
 }
 
 extension RecipesViewController: UITableViewDataSource {

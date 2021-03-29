@@ -9,15 +9,14 @@ import UIKit
 import Kingfisher
 
 class RecipeDetailsViewController: BaseViewController {
+    
+    // MARK: - Outlets
     @IBOutlet private weak var detailsRecipeTableView: UITableView!
     @IBOutlet private weak var recipeImageView: UIImageView!
     
+    // MARK: - Properties
     var recipe: Recipe?
-    
-    
-    
-    
-    var currentIndexRow: Int?
+    private var coreDataManager: CoreDataManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
