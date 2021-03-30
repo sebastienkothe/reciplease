@@ -11,40 +11,53 @@ import Kingfisher
 class RecipeDetailsViewController: BaseViewController {
     
     // MARK: - Outlets
-    @IBOutlet private weak var detailsRecipeTableView: UITableView!
+    @IBOutlet private weak var detailsRecipeTextView: UITextView!
     @IBOutlet private weak var recipeImageView: UIImageView!
+    @IBOutlet weak var recipeInformationView: UIView!
+    @IBOutlet weak var getDirectionsButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var yieldLabel: UILabel!
+    @IBOutlet weak var recipeTitle: UILabel!
     
     // MARK: - Properties
     var recipe: Recipe?
     private var coreDataManager: CoreDataManager?
+    private var recipeIsFavorite = false
     
+    // MARK: - Actions
+    @IBAction func didTapOnFavoriteButton(_ sender: Any) {
+    }
+    
+    @IBAction func didTapOnGetDirectionsButton(_ sender: Any) {
+    }
+    
+    // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        detailsRecipeTableView.dataSource = self
-        detailsRecipeTableView.delegate = self
-        
-        setupRecipeImage()
+        setUpRecipe()
     }
     
-    private func setupRecipeImage() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    private func coreDataFunction() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let coreDataStack = appDelegate.coreDataStack
+        coreDataManager = CoreDataManager(coreDataStack: coreDataStack)
+    }
+    
+    private func setUpRecipe() {
+        guard let ingredientLines = recipe?.ingredientLines.joined(separator: "\n" + "- ") else { return }
+        guard let yield = recipe?.yield else { return }
         guard let imageUrl = recipe?.image else { return }
-        recipeImageView.contentMode = .scaleAspectFill
+        let totalTimeInt = recipe?.totalTime ?? 0
+        
+        detailsRecipeTextView.text = "- " + ingredientLines
+        recipeTitle.text = recipe?.label.localizedCapitalized
+        yieldLabel.text = String(yield)
         recipeImageView.kf.setImage(with: URL(string: imageUrl))
+        timeLabel.text = totalTimeInt.convertTimeToString
     }
 }
-
-extension RecipeDetailsViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "detailsRecipeCell") else { return UITableViewCell() }
-        cell.textLabel?.text = "x"
-        return cell
-    }
-    
-}
-
-extension RecipeDetailsViewController: UITableViewDelegate {}
