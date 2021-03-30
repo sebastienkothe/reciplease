@@ -40,4 +40,14 @@ class BaseViewController: UIViewController {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
+    
+    func setupBarButtonItem(color: UIColor, barButtonItem: UIBarButtonItem) {
+        barButtonItem.tintColor = color
+        navigationItem.rightBarButtonItem = barButtonItem
+    }
+    
+    func deleteRecipeFavorite(recipeTitle: String?, url: String?, coreDataManager: CoreDataManager?, barButtonItem: UIBarButtonItem) {
+        coreDataManager?.deleteRecipe(recipeTitle: recipeTitle ?? "", url: url ?? "")
+        setupBarButtonItem(color: .white, barButtonItem: barButtonItem)
+    }
 }

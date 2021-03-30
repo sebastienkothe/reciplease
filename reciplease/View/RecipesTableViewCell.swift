@@ -16,6 +16,14 @@ class RecipesTableViewCell: UITableViewCell {
         timeLabel.text = recipe.totalTime.convertTimeToString
     }
     
+    func configureFavoriteRecipe(recipe: RecipeEntity) {
+        recipeTitle.text = recipe.title
+        ingredientTitle.text = recipe.ingredients
+        timeLabel.text = Int(recipe.totalTime).convertTimeToString
+        guard let recipeUrl = recipe.image else { return }
+        recipeImage.kf.setImage(with: URL(string: recipeUrl))
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
