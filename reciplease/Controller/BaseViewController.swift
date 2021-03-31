@@ -45,9 +45,4 @@ class BaseViewController: UIViewController {
         barButtonItem.tintColor = color
         navigationItem.rightBarButtonItem = barButtonItem
     }
-    
-    func deleteRecipeFavorite(recipeTitle: String?, url: String?, coreDataManager: CoreDataManager?, barButtonItem: UIBarButtonItem) {
-        coreDataManager?.deleteRecipe(recipeTitle: recipeTitle ?? "", url: url ?? "")
-        setupBarButtonItem(color: .white, barButtonItem: barButtonItem)
-    }
 }

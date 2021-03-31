@@ -55,6 +55,11 @@ class RecipeDetailsViewController: BaseViewController {
         checkIfRecipeIsFavorite()
     }
     
+    func deleteRecipeFavorite(recipeTitle: String?, url: String?, coreDataManager: CoreDataManager?, barButtonItem: UIBarButtonItem) {
+        coreDataManager?.deleteRecipe(recipeTitle: recipeTitle ?? "", url: url ?? "")
+        setupBarButtonItem(color: .white, barButtonItem: barButtonItem)
+    }
+    
     private func coreDataFunction() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let coreDataStack = appDelegate.coreDataStack
