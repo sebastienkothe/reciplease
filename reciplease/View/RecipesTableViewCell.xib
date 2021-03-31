@@ -20,12 +20,30 @@
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vdK-TK-Bib">
                         <rect key="frame" x="0.0" y="0.0" width="270" height="133"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H3y-Aj-TWz">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l9d-on-8ZI">
                                 <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H3y-Aj-TWz">
+                                        <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="H3y-Aj-TWz" secondAttribute="height" multiplier="1:1" id="L94-Al-aK0"/>
+                                        </constraints>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HJf-9O-fOz" userLabel="GradientView">
+                                        <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="H3y-Aj-TWz" secondAttribute="height" multiplier="1:1" id="L94-Al-aK0"/>
+                                    <constraint firstItem="HJf-9O-fOz" firstAttribute="top" secondItem="l9d-on-8ZI" secondAttribute="top" id="IqM-UN-s4o"/>
+                                    <constraint firstItem="H3y-Aj-TWz" firstAttribute="leading" secondItem="l9d-on-8ZI" secondAttribute="leading" id="M8E-jf-Wgr"/>
+                                    <constraint firstAttribute="bottom" secondItem="HJf-9O-fOz" secondAttribute="bottom" id="MdB-po-9Pe"/>
+                                    <constraint firstAttribute="bottom" secondItem="H3y-Aj-TWz" secondAttribute="bottom" id="ObF-4C-ZV3"/>
+                                    <constraint firstAttribute="trailing" secondItem="HJf-9O-fOz" secondAttribute="trailing" id="h2K-aG-pYA"/>
+                                    <constraint firstItem="HJf-9O-fOz" firstAttribute="leading" secondItem="l9d-on-8ZI" secondAttribute="leading" id="jOA-dh-wf9"/>
+                                    <constraint firstItem="H3y-Aj-TWz" firstAttribute="top" secondItem="l9d-on-8ZI" secondAttribute="top" id="rTU-1s-CnR"/>
+                                    <constraint firstAttribute="trailing" secondItem="H3y-Aj-TWz" secondAttribute="trailing" id="uyr-bj-ipJ"/>
                                 </constraints>
-                            </imageView>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="6rl-bQ-Hdo">
                                 <rect key="frame" x="143" y="30" width="127" height="73"/>
                                 <subviews>

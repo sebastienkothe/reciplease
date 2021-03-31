@@ -24,10 +24,32 @@ struct Hit: Codable {
 // MARK: - Recipe
 
 struct Recipe: Codable {
+    
+    init(recipeEntity: RecipeEntity) {
+        self.label = recipeEntity.title ?? ""
+        self.image = recipeEntity.image ?? ""
+        self.url = recipeEntity.url ?? ""
+        self.yield = Int(recipeEntity.yield)
+        
+        if let ingredients = recipeEntity.ingredients {
+            self.ingredientLines = [ingredients]
+        } else {
+            self.ingredientLines = []
+        }
+        
+        self.totalTime = Int(recipeEntity.totalTime)
+    }
+    
     let label: String
     let image: String
     let url: String
     let yield: Int
     let ingredientLines: [String]
     let totalTime: Int
+}
+
+extension Recipe: Equatable {
+    static func ==(lhs: Recipe, rhs: RecipeEntity) -> Bool {
+        rhs.title == lhs.label && rhs.url == lhs.url
+    }
 }

@@ -7,6 +7,40 @@
 
 import UIKit
 
+protocol FridgeManagerDelegate: class {
+    func didChangeIngredients()
+}
+
+enum FridgeManagerError: Error {
+    case ingredientAlreadyExist
+}
+
+class FridgeManager {
+    
+    weak var delegate: FridgeManagerDelegate?
+    
+    var ingredients: [String] = [] {
+        didSet {
+            delegate?.didChangeIngredients()
+        }
+    }
+    
+    func addIngredient(ingredient: String) -> Result<Void, FridgeManagerError>  {
+        let trimmedIngredient = ingredient.trimmingCharacters(in: .whitespaces)
+        
+        if ingredients.contains(where: { $0.lowercased() == trimmedIngredient.lowercased() }) {
+            return .failure(.ingredientAlreadyExist)
+        }
+    
+        ingredients.append(ingredient)
+        return .success(())
+    }
+    
+    func clearFridge() {
+        ingredients.removeAll()
+    }
+}
+
 class FridgeViewController: BaseViewController {
     
     // MARK: - Outlets
@@ -17,30 +51,30 @@ class FridgeViewController: BaseViewController {
     @IBOutlet private weak var ingredientsTableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
+    
+    private let fridgeManager = FridgeManager()
+    
     // MARK: - Properties
-    private var ingredients: [String] = [] {
-        didSet {
-            ingredientsTableView.reloadData()
-        }
-    }
+    
+    
+    
     
     // MARK: - Actions
     @IBAction private func didTapOnAddIngredientButton() {
-        guard let ingredient = ingredientTextField.text?.trimmingCharacters(in: .whitespaces) else { return }
         
-        for ingredientFromIngredientsArray in ingredients {
-            guard ingredient.lowercased() != ingredientFromIngredientsArray.lowercased() else {
-                handleError(.valueAlreadyExists)
-                return
-            }
+        guard let ingredientText = ingredientTextField.text else { return }
+        
+        switch fridgeManager.addIngredient(ingredient: ingredientText) {
+        case .failure:
+            handleError(.valueAlreadyExists)
+        case .success: break
         }
         
-        ingredients.append(ingredient)
-        ingredientTextField.text = String()
+        ingredientTextField.text = ""
     }
     
     @IBAction private func didTapOnClearButton(_ sender: Any) {
-        ingredients.removeAll()
+        fridgeManager.clearFridge()
     }
     
     @IBAction private func didTapOnSearchForRecipesButton() {
@@ -53,6 +87,8 @@ class FridgeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fridgeManager.delegate = self
+        
         let nib = UINib(nibName: .fridgeTableViewCell, bundle: nil)
         ingredientsTableView.register(nib, forCellReuseIdentifier: .fridgeCell)
     }
@@ -60,7 +96,7 @@ class FridgeViewController: BaseViewController {
     private func searchForRecipes() {
         let recipeService = RecipeService()
         
-        recipeService.fetchRecipesFrom(ingredients) { [weak self] (success, recipeResponse) in
+        recipeService.fetchRecipesFrom(fridgeManager.ingredients) { [weak self] (success, recipeResponse) in
             guard let self = self else { return }
             
             DispatchQueue.main.async {
@@ -80,13 +116,13 @@ class FridgeViewController: BaseViewController {
 extension FridgeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ingredients.count
+        return fridgeManager.ingredients.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: .fridgeCell, for: indexPath) as? FridgeTableViewCell else { return UITableViewCell() }
         
-        cell.configure(withIngredient: ingredients[indexPath.row])
+        cell.configure(withIngredient: fridgeManager.ingredients[indexPath.row])
         return cell
     }
     
@@ -103,6 +139,7 @@ extension FridgeViewController {
             let recipes = sender as? [Recipe]
         {
             destinationViewController.recipes = recipes
+            destinationViewController.shouldPresentFavorites = false
         }
     }
 }
@@ -123,4 +160,13 @@ extension FridgeViewController: UITextFieldDelegate {
     
 }
 
+
+
+extension FridgeViewController: FridgeManagerDelegate {
+    func didChangeIngredients() {
+        ingredientsTableView.reloadData()
+    }
+    
+    
+}
 

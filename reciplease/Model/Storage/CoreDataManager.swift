@@ -11,18 +11,17 @@ import CoreData
 final class CoreDataManager {
     
     // MARK: - Properties
-    var recipes: [RecipeEntity] {
+    var recipeEntities: [RecipeEntity] {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         guard let recipes = try? managedObjectContext.fetch(request) else { return [] }
         return recipes
     }
     private let coreDataStack: CoreDataStack
-    private let managedObjectContext: NSManagedObjectContext
+    private var managedObjectContext: NSManagedObjectContext { coreDataStack.mainContext }
     
     // MARK: - Initializer
     init(coreDataStack: CoreDataStack) {
         self.coreDataStack = coreDataStack
-        self.managedObjectContext = coreDataStack.mainContext
     }
     
     func createRecipe(title: String, ingredients: String, yield: Int16, totalTime: Int16, image: String, url: String) {
@@ -37,19 +36,25 @@ final class CoreDataManager {
     }
     
     func deleteAllRecipes() {
-        recipes.forEach { managedObjectContext.delete($0) }
+        recipeEntities.forEach { managedObjectContext.delete($0) }
         coreDataStack.saveContext()
     }
     
-    func deleteRecipe(recipeTitle: String, url: String) {
-        let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "title == %@", recipeTitle)
-        request.predicate = NSPredicate(format: "url == %@", url)
-
-        if let entity = try? managedObjectContext.fetch(request) {
-            entity.forEach { managedObjectContext.delete($0) }
-        }
+    func deleteRecipe(recipe: Recipe) {
+        
+        recipeEntities
+            .filter { recipe == $0 }
+            .forEach { managedObjectContext.delete($0) }
         coreDataStack.saveContext()
+        
+//        let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
+//        request.predicate = NSPredicate(format: "title == %@", recipeTitle)
+//        request.predicate = NSPredicate(format: "url == %@", url)
+//
+//        if let entity = try? managedObjectContext.fetch(request) {
+//            entity.forEach { managedObjectContext.delete($0) }
+//        }
+//        coreDataStack.saveContext()
     }
     
     func checkIfRecipeIsFavorite(recipeTitle: String, url: String) -> Bool {

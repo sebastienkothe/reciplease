@@ -22,18 +22,20 @@ class RecipeDetailsViewController: BaseViewController {
     
     // MARK: - Properties
     var recipe: Recipe?
-    var recipeEntity: RecipeEntity?
     private var coreDataManager: CoreDataManager?
     private var recipeIsFavorite = false
-    private var isFavoriteNavigation: Bool = false
     
     // MARK: - Actions
     @IBAction func didTapOnFavoriteButton(_ sender: Any) {
         checkIfRecipeIsFavorite()
-        !recipeIsFavorite ? addRecipeToFavorites() : deleteRecipeFavorite(recipeTitle: recipe?.label,
-                                                                          url: recipe?.url,
-                                                                          coreDataManager: coreDataManager,
-                                                                          barButtonItem: favoriteButton)
+        if !recipeIsFavorite {
+            addRecipeToFavorites()
+        } else {
+            deleteRecipeFavorite(recipeTitle: recipe?.label,
+                                 url: recipe?.url,
+                                 coreDataManager: coreDataManager,
+                                 barButtonItem: favoriteButton)
+        }
     }
     
     @IBAction func didTapOnGetDirectionsButton(_ sender: Any) {
@@ -43,20 +45,26 @@ class RecipeDetailsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         coreDataFunction()
-        
-        checkIfRecipeIsFavorite()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let controllersInStack = navigationController?.viewControllers else { return }
-        isFavoriteNavigation = controllersInStack.count == 2 ? true : false
-        isFavoriteNavigation ? setUpFavoriteRecipe() : setUpRecipe()
+        setUpRecipe()
         checkIfRecipeIsFavorite()
     }
     
-    func deleteRecipeFavorite(recipeTitle: String?, url: String?, coreDataManager: CoreDataManager?, barButtonItem: UIBarButtonItem) {
-        coreDataManager?.deleteRecipe(recipeTitle: recipeTitle ?? "", url: url ?? "")
+    func deleteRecipeFavorite(
+        recipeTitle: String?,
+        url: String?,
+        coreDataManager: CoreDataManager?,
+        barButtonItem: UIBarButtonItem
+    ) {
+        guard
+            let coreDataManager = coreDataManager,
+            let recipe = recipe
+        else { return }
+        
+        coreDataManager.deleteRecipe(recipe: recipe)
         setupBarButtonItem(color: .white, barButtonItem: barButtonItem)
     }
     
@@ -79,19 +87,13 @@ class RecipeDetailsViewController: BaseViewController {
         timeLabel.text = totalTimeInt.convertTimeToString
     }
     
-    private func setUpFavoriteRecipe() {
-        recipeTitle.text = recipeEntity?.title
-        detailsRecipeTextView.text = recipeEntity?.ingredients
-        yieldLabel.text = String(recipeEntity?.yield ?? 0)
-        timeLabel.text = Int(recipeEntity?.totalTime ?? 0).convertTimeToString
-        guard let recipeUrl = recipeEntity?.image else { return }
-        recipeImageView.kf.setImage(with: URL(string: recipeUrl))
-    }
-    
     private func checkIfRecipeIsFavorite() {
-        guard let recipeTitle = recipeEntity?.title else { return }
-        guard let url = recipeEntity?.url else { return }
-        guard let checkIsRecipeIsFavorite = coreDataManager?.checkIfRecipeIsFavorite(recipeTitle: recipeTitle, url: url) else { return }
+        guard let recipe = recipe else { return }
+        
+        guard let checkIsRecipeIsFavorite = coreDataManager?.checkIfRecipeIsFavorite(
+            recipeTitle: recipe.label,
+            url: recipe.url
+        ) else { return }
         
         recipeIsFavorite = checkIsRecipeIsFavorite
         
@@ -103,12 +105,14 @@ class RecipeDetailsViewController: BaseViewController {
     }
     
     private func addRecipeToFavorites() {
-        guard let label = recipe?.label else { return }
-        guard let ingredients = recipe?.ingredientLines.joined(separator: "\n" + "- ") else { return }
-        guard let yield = recipe?.yield else { return }
-        let totalTime = Int16(recipe?.totalTime ?? 0)
-        guard let image = recipe?.image else { return }
-        guard let url = recipe?.url else { return }
+        guard let recipe = recipe else { return }
+
+        let label = recipe.label
+        let ingredients = recipe.ingredientLines.joined(separator: "\n" + "- ")
+        let yield = recipe.yield
+        let totalTime = Int16(recipe.totalTime)
+        let image = recipe.image
+        let url = recipe.url
         
         coreDataManager?.createRecipe(title: label.localizedCapitalized,
                                       ingredients: "- " + ingredients,
