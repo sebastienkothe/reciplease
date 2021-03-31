@@ -27,6 +27,7 @@ class RecipesViewController: BaseViewController {
         super.viewWillAppear(animated)
         guard let controllersInStack = navigationController?.viewControllers else { return }
         isFavoriteNavigation = controllersInStack.count == 1 ? true : false
+        recipesTableView.reloadData()
     }
     
     private func coreDataFunction() {

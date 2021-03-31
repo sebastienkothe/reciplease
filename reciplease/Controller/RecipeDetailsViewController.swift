@@ -50,7 +50,6 @@ class RecipeDetailsViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard let controllersInStack = navigationController?.viewControllers else { return }
-        print(controllersInStack.count)
         isFavoriteNavigation = controllersInStack.count == 2 ? true : false
         isFavoriteNavigation ? setUpFavoriteRecipe() : setUpRecipe()
         checkIfRecipeIsFavorite()
