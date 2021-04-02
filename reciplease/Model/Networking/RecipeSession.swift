@@ -9,13 +9,13 @@ import Foundation
 import Alamofire
 
 class RecipeSession: RecipeProtocol {
-    func fetch(url: URL, completion: @escaping (DataResponse<Any, AFError>) -> Void) {
-        AF.request(url).responseJSON { dataResponse in
+    func fetch(url: URL, completion: @escaping (DataResponse<Any>) -> Void) {
+        Alamofire.request(url).responseJSON { dataResponse in
             completion(dataResponse)
         }
     }
 }
 
 protocol RecipeProtocol {
-    func fetch(url: URL, completion: @escaping (DataResponse<Any, AFError>) -> Void)
+    func fetch(url: URL, completion: @escaping (DataResponse<Any>) -> Void)
 }
