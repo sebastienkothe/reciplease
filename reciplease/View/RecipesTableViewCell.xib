@@ -93,6 +93,7 @@
             <viewLayoutGuide key="safeArea" id="0rm-uQ-xcS"/>
             <color key="backgroundColor" red="0.34943169359999998" green="0.57761985059999998" blue="0.38427710529999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <connections>
+                <outlet property="gradientView" destination="HJf-9O-fOz" id="tA7-X7-zjy"/>
                 <outlet property="ingredientTitle" destination="nHR-dy-RZG" id="rPc-we-4Li"/>
                 <outlet property="recipeImage" destination="H3y-Aj-TWz" id="2Kw-Cc-Kot"/>
                 <outlet property="recipeTitle" destination="zYO-ZG-CEn" id="KTf-uo-Jpf"/>

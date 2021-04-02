@@ -27,6 +27,8 @@
 		839CF216260FDD6C00276316 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CF215260FDD6C00276316 /* RecipeService.swift */; };
 		839CF2422611F62000276316 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CF2412611F62000276316 /* CoreDataManager.swift */; };
 		839CF2472612154E00276316 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CF2462612154E00276316 /* CoreDataStack.swift */; };
+		839DB70F26160F1300392E3D /* FridgeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839DB70E26160F1300392E3D /* FridgeManager.swift */; };
+		839DB71726160F5500392E3D /* FridgeManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839DB71626160F5500392E3D /* FridgeManagerDelegate.swift */; };
 		83C04CDD25FE1F16008094BE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C04CDC25FE1F16008094BE /* BaseViewController.swift */; };
 		83C04CFD25FE6318008094BE /* RecipeUrlProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C04CFC25FE6318008094BE /* RecipeUrlProvider.swift */; };
 		83C04D0825FF48D8008094BE /* RecipeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C04D0725FF48D8008094BE /* RecipeResponse.swift */; };
@@ -82,6 +84,8 @@
 		839CF215260FDD6C00276316 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
 		839CF2412611F62000276316 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		839CF2462612154E00276316 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		839DB70E26160F1300392E3D /* FridgeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeManager.swift; sourceTree = "<group>"; };
+		839DB71626160F5500392E3D /* FridgeManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeManagerDelegate.swift; sourceTree = "<group>"; };
 		83C04CDC25FE1F16008094BE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		83C04CFC25FE6318008094BE /* RecipeUrlProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeUrlProvider.swift; sourceTree = "<group>"; };
 		83C04D0725FF48D8008094BE /* RecipeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResponse.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 		8300790B25F4CBEC0063FE38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				839DB70E26160F1300392E3D /* FridgeManager.swift */,
+				839DB71B26160F9000392E3D /* Enum */,
 				839CF2402611F60D00276316 /* Storage */,
 				83C04D0625FF48BA008094BE /* DataModel */,
 				83C04CFB25FE626E008094BE /* Data */,
@@ -238,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				83C04D0F25FF4EAB008094BE /* RecipeUrlProviderProtocol.swift */,
+				839DB71626160F5500392E3D /* FridgeManagerDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -250,6 +257,13 @@
 				839CF2462612154E00276316 /* CoreDataStack.swift */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		839DB71B26160F9000392E3D /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		83C04CE425FE231F008094BE /* Networking */ = {
@@ -476,9 +490,11 @@
 				83258E5725F220D900B8E8AF /* AppDelegate.swift in Sources */,
 				83C04CDD25FE1F16008094BE /* BaseViewController.swift in Sources */,
 				83258E5925F220D900B8E8AF /* SceneDelegate.swift in Sources */,
+				839DB70F26160F1300392E3D /* FridgeManager.swift in Sources */,
 				839CF2472612154E00276316 /* CoreDataStack.swift in Sources */,
 				83E255D4260F85960090778B /* String.swift in Sources */,
 				83C04D0825FF48D8008094BE /* RecipeResponse.swift in Sources */,
+				839DB71726160F5500392E3D /* FridgeManagerDelegate.swift in Sources */,
 				83CF62E02604902D005B0865 /* RecipesTableViewCell.swift in Sources */,
 				83258E9725F2248D00B8E8AF /* FridgeViewController.swift in Sources */,
 			);

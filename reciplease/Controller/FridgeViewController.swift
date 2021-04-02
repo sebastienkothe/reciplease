@@ -7,40 +7,6 @@
 
 import UIKit
 
-protocol FridgeManagerDelegate: class {
-    func didChangeIngredients()
-}
-
-enum FridgeManagerError: Error {
-    case ingredientAlreadyExist
-}
-
-class FridgeManager {
-    
-    weak var delegate: FridgeManagerDelegate?
-    
-    var ingredients: [String] = [] {
-        didSet {
-            delegate?.didChangeIngredients()
-        }
-    }
-    
-    func addIngredient(ingredient: String) -> Result<Void, FridgeManagerError>  {
-        let trimmedIngredient = ingredient.trimmingCharacters(in: .whitespaces)
-        
-        if ingredients.contains(where: { $0.lowercased() == trimmedIngredient.lowercased() }) {
-            return .failure(.ingredientAlreadyExist)
-        }
-    
-        ingredients.append(ingredient)
-        return .success(())
-    }
-    
-    func clearFridge() {
-        ingredients.removeAll()
-    }
-}
-
 class FridgeViewController: BaseViewController {
     
     // MARK: - Outlets
@@ -51,13 +17,8 @@ class FridgeViewController: BaseViewController {
     @IBOutlet private weak var ingredientsTableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
-    
-    private let fridgeManager = FridgeManager()
-    
     // MARK: - Properties
-    
-    
-    
+    private let fridgeManager = FridgeManager()
     
     // MARK: - Actions
     @IBAction private func didTapOnAddIngredientButton() {
