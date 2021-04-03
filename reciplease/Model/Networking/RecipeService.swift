@@ -10,21 +10,19 @@ import Foundation
 final class RecipeService {
     
     private let recipeSession: RecipeProtocol
-    private let recipeUrlProvider: RecipeUrlProviderProtocol
+    private let recipeUrlProvider = RecipeUrlProvider()
     
     // Used to be able to perform dependency injection
     
     init(
-        recipeSession: RecipeProtocol = RecipeSession(),
-        recipeUrlProvider: RecipeUrlProviderProtocol = RecipeUrlProvider()
+        recipeSession: RecipeProtocol = RecipeSession()
     ) {
         self.recipeSession = recipeSession
-        self.recipeUrlProvider = recipeUrlProvider
     }
     
     func fetchRecipesFrom(_ ingredients: [String], completion: @escaping (Bool, RecipeResponse?) -> Void) {
         
-        guard let url = buildRecipeUrl(ingredients: ingredients) else { return }
+        guard let url = recipeUrlProvider.buildEdamamRecipeUrl(with: ingredients) else { return }
         
         recipeSession.fetch(url: url) { dataResponse in
             guard dataResponse.response?.statusCode == 200 else {
@@ -41,10 +39,5 @@ final class RecipeService {
             }
             completion(true, recipeResponse)
         }
-    }
-    
-    private func buildRecipeUrl(ingredients: [String]) -> URL? {
-        guard let url = recipeUrlProvider.buildEdamamRecipeUrl(with: ingredients) else { return nil }
-        return url
     }
 }
