@@ -46,15 +46,6 @@ final class CoreDataManager {
             .filter { recipe == $0 }
             .forEach { managedObjectContext.delete($0) }
         coreDataStack.saveContext()
-        
-//        let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
-//        request.predicate = NSPredicate(format: "title == %@", recipeTitle)
-//        request.predicate = NSPredicate(format: "url == %@", url)
-//
-//        if let entity = try? managedObjectContext.fetch(request) {
-//            entity.forEach { managedObjectContext.delete($0) }
-//        }
-//        coreDataStack.saveContext()
     }
     
     func checkIfRecipeIsFavorite(recipeTitle: String, url: String) -> Bool {

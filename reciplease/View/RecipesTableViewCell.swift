@@ -15,15 +15,16 @@ class RecipesTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var gradientView: UIView!
     
-    let gradient: CAGradientLayer = CAGradientLayer()
+    var gradientLayer: CAGradientLayer?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        addAGradientToLayer()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        gradient.frame = gradientView.bounds
+        gradientLayer?.frame = gradientView.frame
     }
     
     func configure(recipe: Recipe) {
@@ -32,15 +33,16 @@ class RecipesTableViewCell: UITableViewCell {
         ingredientTitle.text = recipe.ingredientLines.joined(separator: ", ")
         timeLabel.text = recipe.totalTime.convertTimeToString
     }
-        
+    
     private func addAGradientToLayer() {
-        let clearColor = UIColor.clear.cgColor
-        let blackColor = UIColor.black.cgColor
-        gradient.frame = gradientView.bounds
-        //layer.locations = [0, 0.9]
-        gradient.startPoint = CGPoint(x: 0, y: 0.1)
-        gradient.endPoint = CGPoint(x: 0, y: 0.8)
-        gradient.colors = [clearColor, blackColor]
-        gradientView.layer.insertSublayer(gradient, at: 0)
+        gradientLayer = CAGradientLayer()
+        
+        gradientLayer?.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        gradientLayer?.startPoint = CGPoint(x: 0, y: 0.1)
+        gradientLayer?.endPoint = CGPoint(x: 0, y: 0.8)
+        
+        if let gradientLayer = gradientLayer {
+            gradientView.layer.insertSublayer(gradientLayer, at: 3)
+        }
     }
 }

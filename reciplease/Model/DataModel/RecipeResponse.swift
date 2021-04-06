@@ -40,6 +40,15 @@ struct Recipe: Codable {
         self.totalTime = Int(recipeEntity.totalTime)
     }
     
+    init(label: String, image: String, url: String, yield: Int, ingredientLines: [String], totalTime: Int) {
+        self.label = label
+        self.image = image
+        self.url = url
+        self.yield = yield
+        self.ingredientLines = ingredientLines
+        self.totalTime = totalTime
+    }
+    
     let label: String
     let image: String
     let url: String
