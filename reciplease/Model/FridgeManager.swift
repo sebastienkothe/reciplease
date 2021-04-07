@@ -23,7 +23,7 @@ class FridgeManager {
         if ingredients.contains(where: { $0.lowercased() == trimmedIngredient.lowercased() }) {
             return .failure(.ingredientAlreadyExist)
         }
-    
+        
         ingredients.append(ingredient)
         return .success(())
     }
@@ -35,4 +35,10 @@ class FridgeManager {
 
 enum FridgeManagerError: Error {
     case ingredientAlreadyExist
+    
+    var title: String {
+        switch self {
+        case .ingredientAlreadyExist: return "This ingredient already exists"
+        }
+    }
 }

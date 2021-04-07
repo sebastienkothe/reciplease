@@ -10,38 +10,10 @@ import Kingfisher
 
 class RecipeDetailsViewController: BaseViewController {
     
-    // MARK: - Outlets
-    @IBOutlet private weak var detailsRecipeTextView: UITextView!
-    @IBOutlet private weak var recipeImageView: UIImageView!
-    @IBOutlet weak var recipeInformationView: UIView!
-    @IBOutlet weak var getDirectionsButton: UIButton!
-    @IBOutlet weak var favoriteButton: UIBarButtonItem!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var yieldLabel: UILabel!
-    @IBOutlet weak var recipeTitle: UILabel!
-    
-    // MARK: - Properties
+    // MARK: - Internal Properties
     var recipe: Recipe?
-    private var coreDataManager: CoreDataManager?
-    private var recipeIsFavorite = false
     
-    // MARK: - Actions
-    @IBAction func didTapOnFavoriteButton(_ sender: Any) {
-        checkIfRecipeIsFavorite()
-        if !recipeIsFavorite {
-            addRecipeToFavorites()
-        } else {
-            deleteRecipeFavorite(recipeTitle: recipe?.label,
-                                 url: recipe?.url,
-                                 coreDataManager: coreDataManager,
-                                 barButtonItem: favoriteButton)
-        }
-    }
-    
-    @IBAction func didTapOnGetDirectionsButton(_ sender: Any) {
-    }
-    
-    // MARK: - Methods
+    // MARK: - Internal Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         coreDataFunction()
@@ -53,7 +25,38 @@ class RecipeDetailsViewController: BaseViewController {
         checkIfRecipeIsFavorite()
     }
     
-    func deleteRecipeFavorite(
+    // MARK: - Outlets
+    @IBOutlet private weak var detailsRecipeTextView: UITextView!
+    @IBOutlet private weak var recipeImageView: UIImageView!
+    @IBOutlet private weak var recipeInformationView: UIView!
+    @IBOutlet private weak var getDirectionsButton: UIButton!
+    @IBOutlet private weak var favoriteButton: UIBarButtonItem!
+    @IBOutlet private weak var timeLabel: UILabel!
+    @IBOutlet private weak var yieldLabel: UILabel!
+    @IBOutlet private weak var recipeTitle: UILabel!
+    
+    // MARK: - Actions
+    @IBAction private func didTapOnFavoriteButton(_ sender: Any) {
+        checkIfRecipeIsFavorite()
+        if !recipeIsFavorite {
+            addRecipeToFavorites()
+        } else {
+            deleteRecipeFavorite(recipeTitle: recipe?.label,
+                                 url: recipe?.url,
+                                 coreDataManager: coreDataManager,
+                                 barButtonItem: favoriteButton)
+        }
+    }
+    
+    @IBAction private func didTapOnGetDirectionsButton(_ sender: Any) {
+    }
+    
+    // MARK: - Private properties
+    private var coreDataManager: CoreDataManager?
+    private var recipeIsFavorite = false
+    
+    // MARK: - Private methods
+    private func deleteRecipeFavorite(
         recipeTitle: String?,
         url: String?,
         coreDataManager: CoreDataManager?,
@@ -72,6 +75,11 @@ class RecipeDetailsViewController: BaseViewController {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let coreDataStack = appDelegate.coreDataStack
         coreDataManager = CoreDataManager(coreDataStack: coreDataStack)
+    }
+    
+    private func setupBarButtonItem(color: UIColor, barButtonItem: UIBarButtonItem) {
+        barButtonItem.tintColor = color
+        navigationItem.rightBarButtonItem = barButtonItem
     }
     
     private func setUpRecipe() {

@@ -9,6 +9,16 @@ import UIKit
 
 class FridgeViewController: BaseViewController {
     
+    // MARK: - Internal Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        fridgeManager.delegate = self
+        
+        let nib = UINib(nibName: .fridgeTableViewCell, bundle: nil)
+        ingredientsTableView.register(nib, forCellReuseIdentifier: .fridgeCell)
+    }
+    
     // MARK: - Outlets
     @IBOutlet private weak var ingredientTextField: UITextField!
     @IBOutlet private weak var addButton: UIButton!
@@ -16,9 +26,6 @@ class FridgeViewController: BaseViewController {
     @IBOutlet private weak var clearButton: UIButton!
     @IBOutlet private weak var ingredientsTableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
-    
-    // MARK: - Properties
-    private let fridgeManager = FridgeManager()
     
     // MARK: - Actions
     @IBAction private func didTapOnAddIngredientButton() {
@@ -44,16 +51,10 @@ class FridgeViewController: BaseViewController {
         searchForRecipes()
     }
     
-    // MARK: - Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        fridgeManager.delegate = self
-        
-        let nib = UINib(nibName: .fridgeTableViewCell, bundle: nil)
-        ingredientsTableView.register(nib, forCellReuseIdentifier: .fridgeCell)
-    }
+    // MARK: - Properties
+    private let fridgeManager = FridgeManager()
     
+    // MARK: - Private methods
     private func searchForRecipes() {
         let recipeService = RecipeService()
         
@@ -70,6 +71,28 @@ class FridgeViewController: BaseViewController {
                 }
             }
         }
+    }
+    
+    private func handleError(_ error: Error) {
+        var title: String
+        var message: String
+        
+        switch error {
+        case .valueAlreadyExists:
+            title = "Ingredient is already in"
+            message = "This ingredient already exists in your list."
+        case .emptyArray:
+            title = "No ingredient"
+            message = "Please add an ingredient."
+        case .noRecipe:
+            title = "No recipe"
+            message = "Sorry there is no recipe."
+        }
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
 }
@@ -105,6 +128,7 @@ extension FridgeViewController {
     }
 }
 
+// MARK: - Keyboard
 extension FridgeViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == ingredientTextField {
@@ -121,13 +145,9 @@ extension FridgeViewController: UITextFieldDelegate {
     
 }
 
-
-
 extension FridgeViewController: FridgeManagerDelegate {
     func didChangeIngredients() {
         ingredientsTableView.reloadData()
     }
-    
-    
 }
 

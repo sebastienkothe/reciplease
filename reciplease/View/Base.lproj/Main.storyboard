@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QMt-Pt-PXT">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -34,8 +35,24 @@
                             <constraint firstItem="Xe2-43-y0Z" firstAttribute="bottom" secondItem="XhE-uc-DaC" secondAttribute="bottom" id="y8l-mp-OHn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Reciplease" id="rf6-uL-Efu"/>
+                    <navigationItem key="navigationItem" title="Reciplease" id="rf6-uL-Efu">
+                        <barButtonItem key="rightBarButtonItem" title="Clean" image="trash" catalog="system" id="Xwa-U7-cGN">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uq1-It-viR">
+                                <rect key="frame" x="284" y="11" width="20" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="trash" catalog="system">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapOnAllRecipesButton:" destination="ALp-fP-R5g" eventType="touchUpInside" id="fl6-2y-RHT"/>
+                                </connections>
+                            </button>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="deleteAllRecipesButton" destination="uq1-It-viR" id="jH8-Yu-Iac"/>
                         <outlet property="recipesTableView" destination="XhE-uc-DaC" id="DRj-Ad-6Te"/>
                         <segue destination="WNZ-fo-uiI" kind="show" identifier="goToRecipeDetails" id="DDL-XU-mPW"/>
                     </connections>
@@ -478,6 +495,7 @@
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -9,12 +9,12 @@ import UIKit
 import Kingfisher
 
 class RecipesViewController: BaseViewController {
-    @IBOutlet private weak var recipesTableView: UITableView!
     
+    // MARK: - Internal properties
     var recipes: [Recipe] = []
-    var coreDataManager: CoreDataManager?
     var shouldPresentFavorites = true
     
+    // MARK: - Internal functions
     override func viewDidLoad() {
         super.viewDidLoad()
         coreDataFunction()
@@ -26,7 +26,7 @@ class RecipesViewController: BaseViewController {
         super.viewWillAppear(animated)
         setupRecipes()
         recipesTableView.reloadData()
-        
+        deleteAllRecipesButton.isHidden = shouldPresentFavorites ? false : true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -40,6 +40,19 @@ class RecipesViewController: BaseViewController {
         }
     }
     
+    // MARK: - Outlets
+    @IBOutlet private weak var recipesTableView: UITableView!
+    @IBOutlet private weak var deleteAllRecipesButton: UIButton!
+    
+    // MARK: - Private actions
+    @IBAction private func didTapOnAllRecipesButton(_ sender: Any) {
+        coreDataManager?.deleteAllRecipes()
+    }
+    
+    // MARK: - Private properties
+    private var coreDataManager: CoreDataManager?
+    
+    // MARK: - Private functions
     private func setupRecipes() {
         if shouldPresentFavorites {
             guard let coreDataManager = coreDataManager else { return }
@@ -52,8 +65,6 @@ class RecipesViewController: BaseViewController {
         let coreDataStack = appDelegate.coreDataStack
         coreDataManager = CoreDataManager(coreDataStack: coreDataStack)
     }
-    
-    
 }
 
 extension RecipesViewController: UITableViewDataSource {
