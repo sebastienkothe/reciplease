@@ -49,6 +49,8 @@ class RecipeDetailsViewController: BaseViewController {
     }
     
     @IBAction private func didTapOnGetDirectionsButton(_ sender: Any) {
+        guard let recipeUrl = recipe?.url else { return }
+        goToTheRecipeWebsite(urlString: recipeUrl)
     }
     
     // MARK: - Private properties
@@ -75,6 +77,12 @@ class RecipeDetailsViewController: BaseViewController {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let coreDataStack = appDelegate.coreDataStack
         coreDataManager = CoreDataManager(coreDataStack: coreDataStack)
+    }
+    
+    private func goToTheRecipeWebsite(urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        guard UIApplication.shared.canOpenURL(url) else { return }
+        UIApplication.shared.open(url)
     }
     
     private func setupBarButtonItem(color: UIColor, barButtonItem: UIBarButtonItem) {
