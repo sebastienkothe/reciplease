@@ -148,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				839DB70E26160F1300392E3D /* FridgeManager.swift */,
-				839DB71B26160F9000392E3D /* Enum */,
 				839CF2402611F60D00276316 /* Storage */,
 				83C04D0625FF48BA008094BE /* DataModel */,
 				83C04CFB25FE626E008094BE /* Data */,
@@ -258,13 +257,6 @@
 				839CF2462612154E00276316 /* CoreDataStack.swift */,
 			);
 			path = Storage;
-			sourceTree = "<group>";
-		};
-		839DB71B26160F9000392E3D /* Enum */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Enum;
 			sourceTree = "<group>";
 		};
 		83C04CE425FE231F008094BE /* Networking */ = {
