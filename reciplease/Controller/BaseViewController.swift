@@ -11,7 +11,7 @@ class BaseViewController: UIViewController {
     
     /// Used to hide items
     func toggleActivityIndicator(shown: Bool, activityIndicator: UIActivityIndicatorView, button: UIButton) {
-        activityIndicator.isHidden = !shown
+        shown ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
         button.isHidden = shown
     }
     

@@ -58,16 +58,23 @@ class FridgeViewController: BaseViewController {
     private func searchForRecipes() {
         let recipeService = RecipeService()
         
-        recipeService.fetchRecipesFrom(fridgeManager.ingredients) { [weak self] (success, recipeResponse) in
+        recipeService.fetchRecipesFrom(fridgeManager.ingredients) { [weak self] (result) in
             guard let self = self else { return }
             
             DispatchQueue.main.async {
-                self.toggleActivityIndicator(shown: false, activityIndicator: self.activityIndicator, button: self.searchButton)
-                if success {
-                    let recipes = recipeResponse?.hits.map { $0.recipe }
-                    self.performSegue(withIdentifier: .segueGoToRecipesList, sender: recipes)
-                } else {
+
+
+                self.toggleActivityIndicator(
+                    shown: false,
+                    activityIndicator: self.activityIndicator,
+                    button: self.searchButton
+                )
+                
+                switch result {
+                case .failure:
                     self.handleError(.noRecipe)
+                case .success(let recipes):
+                    self.performSegue(withIdentifier: .segueGoToRecipesList, sender: recipes)
                 }
             }
         }

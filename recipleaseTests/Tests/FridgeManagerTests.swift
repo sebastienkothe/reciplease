@@ -36,10 +36,8 @@ class FridgeManagerTests: XCTestCase {
         case .success:
             XCTAssertEqual(fridgeManager.ingredients.joined(), "Lemon")
         case .failure:
-            XCTAssertTrue(fridgeManager.ingredients.isEmpty)
+            XCTFail()
         }
-        
-        XCTAssertNotNil(fridgeManager.ingredients)
     }
     
     func testIngredientsShouldBeEmpty() {

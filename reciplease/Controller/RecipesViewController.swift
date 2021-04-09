@@ -47,6 +47,8 @@ class RecipesViewController: BaseViewController {
     // MARK: - Private actions
     @IBAction private func didTapOnAllRecipesButton(_ sender: Any) {
         coreDataManager?.deleteAllRecipes()
+        setupRecipes()
+        recipesTableView.reloadData()
     }
     
     // MARK: - Private properties
