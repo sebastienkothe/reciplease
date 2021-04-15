@@ -15,9 +15,7 @@ class RecipesTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var gradientView: UIView!
     
-    
-  
-    
+    /// Used to modify the cell based on the recipe information
     func configure(recipe: Recipe) {
         recipeImage.kf.setImage(with: URL(string: recipe.image))
         recipeTitle.text = recipe.label

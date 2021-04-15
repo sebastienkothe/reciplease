@@ -73,23 +73,27 @@ class RecipeDetailsViewController: BaseViewController {
         setupBarButtonItem(color: .white, barButtonItem: barButtonItem)
     }
     
+    /// Used to set the value of the coreDataManager property
     private func coreDataFunction() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let coreDataStack = appDelegate.coreDataStack
         coreDataManager = CoreDataManager(coreDataStack: coreDataStack)
     }
     
+    /// Used to open the mobile browser based on the URL provided by the recipe
     private func goToTheRecipeWebsite(urlString: String) {
         guard let url = URL(string: urlString) else { return }
         guard UIApplication.shared.canOpenURL(url) else { return }
         UIApplication.shared.open(url)
     }
     
+    
     private func setupBarButtonItem(color: UIColor, barButtonItem: UIBarButtonItem) {
         barButtonItem.tintColor = color
         navigationItem.rightBarButtonItem = barButtonItem
     }
     
+    /// Used to modify the interface based on the recipe information
     private func setUpRecipe() {
         guard let ingredientLines = recipe?.ingredientLines.joined(separator: "\n" + "- ") else { return }
         guard let yield = recipe?.yield else { return }
@@ -131,7 +135,7 @@ class RecipeDetailsViewController: BaseViewController {
         let url = recipe.url
         
         coreDataManager?.createRecipe(title: label.localizedCapitalized,
-                                      ingredients: "- " + ingredients,
+                                      ingredients: ingredients,
                                       yield: Int16(yield),
                                       totalTime: totalTime,
                                       image: image, url: url)

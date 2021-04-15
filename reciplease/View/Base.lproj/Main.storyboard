@@ -45,7 +45,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapOnAllRecipesButton:" destination="ALp-fP-R5g" eventType="touchUpInside" id="fl6-2y-RHT"/>
+                                    <action selector="didTapOnDeleteAllRecipesButton:" destination="ALp-fP-R5g" eventType="touchUpInside" id="fl6-2y-RHT"/>
                                 </connections>
                             </button>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

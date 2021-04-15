@@ -16,14 +16,10 @@ class GradientView: UIView {
         gradientLayer?.frame = frame
     }
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         addAGradientToLayer()
     }
-    
-    
-    
     
     private func addAGradientToLayer() {
         gradientLayer = CAGradientLayer()

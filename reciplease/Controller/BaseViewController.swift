@@ -9,7 +9,9 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
-    /// Used to hide items
+    // MARK: - Internal Methods
+    
+    /// Used to hide/show items
     func toggleActivityIndicator(shown: Bool, activityIndicator: UIActivityIndicatorView, button: UIButton) {
         shown ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
         button.isHidden = shown

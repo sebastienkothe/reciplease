@@ -32,20 +32,20 @@ final class CoreDataManagerTests: XCTestCase {
     // MARK: - Tests
 
     func testAddRecipeMethods_WhenAnEntityIsCreated_ThenShouldBeCorrectlySaved() {
-        let bredBaking = Recipe(label: "Bread Baking: 70-Percent Hydration Bread", image: "https://www.edamam.com/web-img/372/372186f5e6bec5505204bef2364a80f2.JPG", url: "http://www.seriouseats.com/recipes/2011/03/bread-baking-70-percent-hydration-bread-recipe.html", yield: 8, ingredientLines: ["Ingredients"], totalTime: 33)
+        let breadBaking = Recipe(label: "Bread Baking: 70-Percent Hydration Bread", image: "https://www.edamam.com/web-img/372/372186f5e6bec5505204bef2364a80f2.JPG", url: "http://www.seriouseats.com/recipes/2011/03/bread-baking-70-percent-hydration-bread-recipe.html", yield: 8, ingredientLines: ["Ingredients"], totalTime: 33)
         
-        coreDataManager.createRecipe(title: bredBaking.label, ingredients: bredBaking.ingredientLines.joined(), yield: Int16(bredBaking.yield), totalTime: Int16(bredBaking.totalTime), image: bredBaking.image, url: bredBaking.url)
+        coreDataManager.createRecipe(title: breadBaking.label, ingredients: breadBaking.ingredientLines.joined(), yield: Int16(breadBaking.yield), totalTime: Int16(breadBaking.totalTime), image: breadBaking.image, url: breadBaking.url)
         
         XCTAssertTrue(!coreDataManager.recipeEntities.isEmpty)
         XCTAssertTrue(coreDataManager.recipeEntities.count == 1)
-        XCTAssertTrue(coreDataManager.recipeEntities[0].title == bredBaking.label)
-        XCTAssertTrue(coreDataManager.recipeEntities[0].ingredients == bredBaking.ingredientLines.joined())
-        XCTAssertTrue(coreDataManager.recipeEntities[0].yield == bredBaking.yield)
-        XCTAssertTrue(coreDataManager.recipeEntities[0].totalTime == bredBaking.totalTime)
-        XCTAssertTrue(coreDataManager.recipeEntities[0].image == bredBaking.image)
-        XCTAssertTrue(coreDataManager.recipeEntities[0].url == bredBaking.url)
+        XCTAssertTrue(coreDataManager.recipeEntities[0].title == breadBaking.label)
+        XCTAssertTrue(coreDataManager.recipeEntities[0].ingredients == breadBaking.ingredientLines.joined())
+        XCTAssertTrue(coreDataManager.recipeEntities[0].yield == breadBaking.yield)
+        XCTAssertTrue(coreDataManager.recipeEntities[0].totalTime == breadBaking.totalTime)
+        XCTAssertTrue(coreDataManager.recipeEntities[0].image == breadBaking.image)
+        XCTAssertTrue(coreDataManager.recipeEntities[0].url == breadBaking.url)
         
-        let recipeIsFavorite = coreDataManager.checkIfRecipeIsFavorite(recipeTitle: bredBaking.label, url: bredBaking.url)
+        let recipeIsFavorite = coreDataManager.checkIfRecipeIsFavorite(recipeTitle: breadBaking.label, url: breadBaking.url)
         XCTAssertTrue(coreDataManager.recipeEntities.count > 0)
         XCTAssertTrue(recipeIsFavorite)
     }

@@ -45,7 +45,7 @@ class RecipesViewController: BaseViewController {
     @IBOutlet private weak var deleteAllRecipesButton: UIButton!
     
     // MARK: - Private actions
-    @IBAction private func didTapOnAllRecipesButton(_ sender: Any) {
+    @IBAction private func didTapOnDeleteAllRecipesButton(_ sender: Any) {
         coreDataManager?.deleteAllRecipes()
         setupRecipes()
         recipesTableView.reloadData()
@@ -55,6 +55,8 @@ class RecipesViewController: BaseViewController {
     private var coreDataManager: CoreDataManager?
     
     // MARK: - Private functions
+    
+    /// Used to change the type of the recipe depending on the navigation
     private func setupRecipes() {
         if shouldPresentFavorites {
             guard let coreDataManager = coreDataManager else { return }
@@ -62,6 +64,7 @@ class RecipesViewController: BaseViewController {
         }
     }
     
+    /// Used to set the value of the coreDataManager property
     private func coreDataFunction() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let coreDataStack = appDelegate.coreDataStack

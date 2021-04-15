@@ -30,7 +30,7 @@ class FridgeViewController: BaseViewController {
     // MARK: - Actions
     @IBAction private func didTapOnAddIngredientButton() {
         
-        guard let ingredientText = ingredientTextField.text else { return }
+        guard let ingredientText = ingredientTextField.text, ingredientText.trimmingCharacters(in: .whitespaces) != "" else { return }
         
         switch fridgeManager.addIngredient(ingredient: ingredientText) {
         case .failure:
@@ -51,10 +51,12 @@ class FridgeViewController: BaseViewController {
         searchForRecipes()
     }
     
-    // MARK: - Properties
+    // MARK: - Private properties
     private let fridgeManager = FridgeManager()
     
     // MARK: - Private methods
+    
+    /// Used to initiate the process of collecting recipes
     private func searchForRecipes() {
         let recipeService = RecipeService()
         
@@ -80,6 +82,7 @@ class FridgeViewController: BaseViewController {
         }
     }
     
+    /// Used to show error to the user
     private func handleError(_ error: Error) {
         var title: String
         var message: String

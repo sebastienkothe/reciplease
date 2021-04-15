@@ -117,7 +117,7 @@ class RecipeServiceTests: XCTestCase {
 //        wait(for: [expectation], timeout: 0.01)
 //    }
 //
-    func testGetRecipeShouldasdsadPostSuccessCallbackIfNoErrorAndCorrectData() {
+    func testFetchRecipesFromShouldReturnAPizzaRecipe() {
         let recipeResponse = RecipeResponse(hits: [
             .init(recipe: Recipe(label: "Pizza", image: "", url: "", yield: 10, ingredientLines: [], totalTime: 10))
         ])
@@ -133,10 +133,9 @@ class RecipeServiceTests: XCTestCase {
                 XCTAssertEqual("Pizza", recipes.first!.label)
             }
         }
-        
     }
     
-    func testGetRecipeShouldasdsadPostSuccessCallbackIfNoErrorAndCorrectDasdasata() {
+    func testFetchRecipesFromShouldReturnAnSpecificError() {
         let networkManagerMock = NetworkManagerMock(result: .failure(.failedToDecode))
         
         let recipeService = RecipeService(networkManager: networkManagerMock)
@@ -151,6 +150,13 @@ class RecipeServiceTests: XCTestCase {
             }
         }
         
+    }
+    
+    func testBuildEdamamRecipeUrlShouldFail() {
+        let networkManagerMock = NetworkManagerMock(result: .failure(.failedToDecode))
+        let recipeUrlProvider = RecipeUrlProviderMock()
+        let recipeService = RecipeService(networkManager: networkManagerMock, recipeUrlProvider: recipeUrlProvider)
+        recipeService.fetchRecipesFrom(["lemon"]) { (result) in }
     }
 }
 
