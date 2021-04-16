@@ -29,7 +29,7 @@ class GradientView: UIView {
         
         gradientLayer?.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradientLayer?.startPoint = CGPoint(x: 0, y: 0.1)
-        gradientLayer?.endPoint = CGPoint(x: 0, y: 0.8)
+        gradientLayer?.endPoint = CGPoint(x: 0, y: 0.4)
         
         if let gradientLayer = gradientLayer {
             layer.insertSublayer(gradientLayer, at: 3)

@@ -28,14 +28,14 @@
                                         <rect key="frame" x="0.0" y="0.0" width="130" height="133"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HJf-9O-fOz" userLabel="GradientView" customClass="GradientView" customModule="reciplease" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="130" height="133"/>
+                                        <rect key="frame" x="0.0" y="46.5" width="130" height="86.5"/>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="HJf-9O-fOz" firstAttribute="top" secondItem="l9d-on-8ZI" secondAttribute="top" id="IqM-UN-s4o"/>
                                     <constraint firstItem="H3y-Aj-TWz" firstAttribute="leading" secondItem="l9d-on-8ZI" secondAttribute="leading" id="M8E-jf-Wgr"/>
                                     <constraint firstAttribute="bottom" secondItem="HJf-9O-fOz" secondAttribute="bottom" id="MdB-po-9Pe"/>
                                     <constraint firstAttribute="bottom" secondItem="H3y-Aj-TWz" secondAttribute="bottom" id="ObF-4C-ZV3"/>
+                                    <constraint firstItem="HJf-9O-fOz" firstAttribute="height" secondItem="l9d-on-8ZI" secondAttribute="height" multiplier="0.65" id="SEO-Ch-0gV"/>
                                     <constraint firstAttribute="trailing" secondItem="HJf-9O-fOz" secondAttribute="trailing" id="h2K-aG-pYA"/>
                                     <constraint firstItem="HJf-9O-fOz" firstAttribute="leading" secondItem="l9d-on-8ZI" secondAttribute="leading" id="jOA-dh-wf9"/>
                                     <constraint firstItem="H3y-Aj-TWz" firstAttribute="top" secondItem="l9d-on-8ZI" secondAttribute="top" id="rTU-1s-CnR"/>
