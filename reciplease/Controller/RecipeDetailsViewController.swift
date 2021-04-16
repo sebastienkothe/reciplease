@@ -126,7 +126,7 @@ class RecipeDetailsViewController: BaseViewController {
     
     private func addRecipeToFavorites() {
         guard let recipe = recipe else { return }
-
+        
         let label = recipe.label
         let ingredients = recipe.ingredientLines.joined(separator: "\n" + "- ")
         let yield = recipe.yield

@@ -10,7 +10,7 @@ import CoreData
 @testable import reciplease
 
 final class CoreDataStackMock: CoreDataStack {
-
+    
     // MARK: - Initializer
     convenience init() {
         self.init(modelName: "reciplease")

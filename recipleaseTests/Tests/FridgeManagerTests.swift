@@ -12,11 +12,11 @@ import Foundation
 class FridgeManagerTests: XCTestCase {
     
     // MARK: - Properties
-
+    
     var fridgeManager: FridgeManager!
     var fridgeManagerDelegateMock: FridgeManagerDelegateMock!
     var ingredients: [String]!
-
+    
     override func setUp() {
         super.setUp()
         fridgeManager = FridgeManager()

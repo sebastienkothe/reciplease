@@ -87,7 +87,7 @@ extension RecipesViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipesCell") as? RecipesTableViewCell else {
             return UITableViewCell()
         }
-
+        
         let recipe = recipes[indexPath.row]
         cell.configure(recipe: recipe)
         return cell

@@ -62,8 +62,8 @@ class FridgeViewController: BaseViewController {
             guard let self = self else { return }
             
             DispatchQueue.main.async {
-
-
+                
+                
                 self.handleActivityIndicator(
                     shown: false,
                     activityIndicator: self.activityIndicator,
@@ -73,7 +73,7 @@ class FridgeViewController: BaseViewController {
                 switch result {
                 case .failure(let error):
                     self.errorAlertManager.presentErrorAsAlert(on: self, error: error)
-                   
+                    
                 case .success(let recipes):
                     self.performSegue(withIdentifier: .segueGoToRecipesList, sender: recipes)
                 }

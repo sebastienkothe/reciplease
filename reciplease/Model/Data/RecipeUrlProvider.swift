@@ -23,7 +23,7 @@ class RecipeUrlProvider: RecipeUrlProviderProtocol {
             URLQueryItem(name: "from", value: "0"),
             URLQueryItem(name: "to", value: "10")
         ]
-                
+        
         let queryItem = URLQueryItem(name: "q", value: ingredients.joined(separator: ","))
         urlComponents.queryItems?.append(queryItem)
         
