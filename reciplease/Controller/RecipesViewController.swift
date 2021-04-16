@@ -99,5 +99,19 @@ extension RecipesViewController: UITableViewDataSource {
     
 }
 
-extension RecipesViewController: UITableViewDelegate { }
+extension RecipesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Click on the star to add a recipe to your favorites"
+        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        label.textAlignment = .center
+        label.textColor = .black
+        label.numberOfLines = 0
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return shouldPresentFavorites && coreDataManager?.recipeEntities.isEmpty ?? true ? 400 : 0
+    }
+}
 
