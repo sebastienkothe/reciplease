@@ -40,6 +40,25 @@ class FridgeManagerTests: XCTestCase {
         }
     }
     
+    func testAddIngredientShouldIndicateThatIngredientIsEmpty() {
+        switch fridgeManager.addIngredient(ingredient: "") {
+        case .success:
+            XCTFail()
+        case .failure(let error):
+            XCTAssertEqual(FridgeManagerError.ingredientIsEmpty, error)
+        }
+    }
+    
+    func testAddIngredientShouldIndicateThatIngredientIsEmptyIfItContainsOnlyWhiteSpace() {
+        
+        switch fridgeManager.addIngredient(ingredient: "  ") {
+        case .success:
+            XCTFail()
+        case .failure(let error):
+            XCTAssertEqual(FridgeManagerError.ingredientIsEmpty, error)
+        }
+    }
+    
     func testIngredientsShouldBeEmpty() {
         fridgeManager.ingredients = ["Lemon"]
         fridgeManager.clearFridge()

@@ -10,10 +10,10 @@ import Kingfisher
 
 class RecipeDetailsViewController: BaseViewController {
     
-    // MARK: - Internal Properties
+    // MARK: - Internal property
     var recipe: Recipe?
     
-    // MARK: - Internal Methods
+    // MARK: - Internal methods
     override func viewDidLoad() {
         super.viewDidLoad()
         coreDataFunction()

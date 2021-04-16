@@ -8,12 +8,14 @@
 import UIKit
 
 class CustomButton: UIButton {
-
+    
+    // MARK: - Internal method
     override func awakeFromNib() {
         super.awakeFromNib()
         roundedCorner()
     }
     
+    // MARK: - Private method
     private func roundedCorner() {
         self.layer.cornerRadius = self.frame.height / 2
     }

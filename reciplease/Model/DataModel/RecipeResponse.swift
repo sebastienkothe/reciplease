@@ -10,19 +10,16 @@ import Foundation
 import Alamofire
 
 // MARK: - RecipeResponse
-
 struct RecipeResponse: Codable {
     let hits: [Hit]
 }
 
 // MARK: - Hit
-
 struct Hit: Codable {
     let recipe: Recipe
 }
 
 // MARK: - Recipe
-
 struct Recipe: Codable {
     
     init(recipeEntity: RecipeEntity) {

@@ -9,19 +9,17 @@ import Foundation
 
 class FakeResponseData {
     
-    // MARK: - Response
+    // MARK: - Private properties
     
-    static let responseOK = HTTPURLResponse(url: URL(string: "https://www.google.fr")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
-    static let responseKO = HTTPURLResponse(url: URL(string: "https://www.google.fr")!, statusCode: 500, httpVersion: nil, headerFields: nil)!
+    // MARK: Response
+    private static let responseOK = HTTPURLResponse(url: URL(string: "https://www.google.fr")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+    private static let responseKO = HTTPURLResponse(url: URL(string: "https://www.google.fr")!, statusCode: 500, httpVersion: nil, headerFields: nil)!
     
-    // MARK: - Error
-
-    class NetworkError: Error {}
-    static let networkError = NetworkError()
+    // MARK: Error
+    private static let networkError = NetworkError()
     
-    // MARK: - Data
-    
-    static var correctData: Data {
+    // MARK: Data
+    private static var correctData: Data {
         let bundle = Bundle(for: FakeResponseData.self)
         guard let url = bundle.url(forResource: "RecipeResponse", withExtension: "json") else {
             fatalError("RecipesResponse.json is not found.")
@@ -30,5 +28,5 @@ class FakeResponseData {
         return data
     }
     
-    static let incorrectData = "erreur".data(using: .utf8)!
+    private static let incorrectData = "erreur".data(using: .utf8)!
 }

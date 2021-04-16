@@ -9,16 +9,14 @@ import Foundation
 import Alamofire
 @testable import reciplease
 
-class RecipeSessionFake: RecipeProtocol {
+class RecipeSessionFake: NetworkSessionProtocol {
     
-    private let fakeResponse: FakeResponse
-    
+    // MARK: - Initializer
     init(fakeResponse: FakeResponse) {
         self.fakeResponse = fakeResponse
     }
     
-    let recipeUrlProvider = RecipeUrlProvider()
-
+    // MARK: - Internal method
     func fetch(url: URL, completion: @escaping (DataResponse<Any>) -> Void) {
         let httpResponse = fakeResponse.response
         let data = fakeResponse.data
@@ -29,4 +27,8 @@ class RecipeSessionFake: RecipeProtocol {
         
         completion(DataResponse(request: urlRequest, response: httpResponse, data: data, result: result))
     }
+    
+    // MARK: - Private properties
+    private let fakeResponse: FakeResponse
+    private let recipeUrlProvider = RecipeUrlProvider()
 }

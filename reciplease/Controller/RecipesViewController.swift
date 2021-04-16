@@ -14,7 +14,7 @@ class RecipesViewController: BaseViewController {
     var recipes: [Recipe] = []
     var shouldPresentFavorites = true
     
-    // MARK: - Internal functions
+    // MARK: - Internal methods
     override func viewDidLoad() {
         super.viewDidLoad()
         coreDataFunction()
@@ -44,7 +44,7 @@ class RecipesViewController: BaseViewController {
     @IBOutlet private weak var recipesTableView: UITableView!
     @IBOutlet private weak var deleteAllRecipesButton: UIButton!
     
-    // MARK: - Private actions
+    // MARK: - Actions
     @IBAction private func didTapOnDeleteAllRecipesButton(_ sender: Any) {
         coreDataManager?.deleteAllRecipes()
         setupRecipes()
@@ -54,7 +54,7 @@ class RecipesViewController: BaseViewController {
     // MARK: - Private properties
     private var coreDataManager: CoreDataManager?
     
-    // MARK: - Private functions
+    // MARK: - Private methods
     
     /// Used to change the type of the recipe depending on the navigation
     private func setupRecipes() {

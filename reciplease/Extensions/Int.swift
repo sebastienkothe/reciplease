@@ -8,6 +8,8 @@
 import Foundation
 
 extension Int {
+    
+    // MARK: - Internal property
     var convertTimeToString: String {
         if self == 0 {
             let timeNull = "N/A"

@@ -9,7 +9,7 @@ import UIKit
 
 class FridgeViewController: BaseViewController {
     
-    // MARK: - Internal Methods
+    // MARK: - Internal method
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,16 +29,14 @@ class FridgeViewController: BaseViewController {
     
     // MARK: - Actions
     @IBAction private func didTapOnAddIngredientButton() {
-        
-        guard let ingredientText = ingredientTextField.text, ingredientText.trimmingCharacters(in: .whitespaces) != "" else { return }
+        guard let ingredientText = ingredientTextField.text else { return }
         
         switch fridgeManager.addIngredient(ingredient: ingredientText) {
-        case .failure:
-            handleError(.valueAlreadyExists)
-        case .success: break
+        case .failure(let error):
+            errorAlertManager.presentErrorAsAlert(on: self, error: error)
+        case .success:
+            ingredientTextField.text = ""
         }
-        
-        ingredientTextField.text = ""
     }
     
     @IBAction private func didTapOnClearButton(_ sender: Any) {
@@ -47,18 +45,18 @@ class FridgeViewController: BaseViewController {
     
     @IBAction private func didTapOnSearchForRecipesButton() {
         // To show the activity  indicator and hide the button
-        toggleActivityIndicator(shown: true, activityIndicator: activityIndicator, button: searchButton)
+        handleActivityIndicator(shown: true, activityIndicator: activityIndicator, button: searchButton)
         searchForRecipes()
     }
     
     // MARK: - Private properties
     private let fridgeManager = FridgeManager()
+    private let recipeService = RecipeService()
     
-    // MARK: - Private methods
+    // MARK: - Private method
     
     /// Used to initiate the process of collecting recipes
     private func searchForRecipes() {
-        let recipeService = RecipeService()
         
         recipeService.fetchRecipesFrom(fridgeManager.ingredients) { [weak self] (result) in
             guard let self = self else { return }
@@ -66,45 +64,22 @@ class FridgeViewController: BaseViewController {
             DispatchQueue.main.async {
 
 
-                self.toggleActivityIndicator(
+                self.handleActivityIndicator(
                     shown: false,
                     activityIndicator: self.activityIndicator,
                     button: self.searchButton
                 )
                 
                 switch result {
-                case .failure:
-                    self.handleError(.noRecipe)
+                case .failure(let error):
+                    self.errorAlertManager.presentErrorAsAlert(on: self, error: error)
+                   
                 case .success(let recipes):
                     self.performSegue(withIdentifier: .segueGoToRecipesList, sender: recipes)
                 }
             }
         }
     }
-    
-    /// Used to show error to the user
-    private func handleError(_ error: Error) {
-        var title: String
-        var message: String
-        
-        switch error {
-        case .valueAlreadyExists:
-            title = "Ingredient is already in"
-            message = "This ingredient already exists in your list."
-        case .emptyArray:
-            title = "No ingredient"
-            message = "Please add an ingredient."
-        case .noRecipe:
-            title = "No recipe"
-            message = "Sorry there is no recipe."
-        }
-        
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
-    }
-    
 }
 
 extension FridgeViewController: UITableViewDataSource {

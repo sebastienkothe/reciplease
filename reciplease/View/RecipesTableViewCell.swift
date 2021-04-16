@@ -9,11 +9,7 @@ import UIKit
 
 class RecipesTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var recipeImage: UIImageView!
-    @IBOutlet weak var recipeTitle: UILabel!
-    @IBOutlet weak var ingredientTitle: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var gradientView: UIView!
+    // MARK: - Internal method
     
     /// Used to modify the cell based on the recipe information
     func configure(recipe: Recipe) {
@@ -23,5 +19,9 @@ class RecipesTableViewCell: UITableViewCell {
         timeLabel.text = recipe.totalTime.convertTimeToString
     }
     
-    
+    @IBOutlet private weak var recipeImage: UIImageView!
+    @IBOutlet private weak var recipeTitle: UILabel!
+    @IBOutlet private weak var ingredientTitle: UILabel!
+    @IBOutlet private weak var timeLabel: UILabel!
+    @IBOutlet private weak var gradientView: UIView!
 }

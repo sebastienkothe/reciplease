@@ -23,7 +23,7 @@
 		839CF1F4260FAB2100276316 /* FridgeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CF1F3260FAB2100276316 /* FridgeTableViewCell.swift */; };
 		839CF1FF260FB17C00276316 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CF1FE260FB17C00276316 /* CustomButton.swift */; };
 		839CF207260FD2EA00276316 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CF206260FD2EA00276316 /* Int.swift */; };
-		839CF20C260FD89B00276316 /* RecipeSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CF20B260FD89B00276316 /* RecipeSession.swift */; };
+		839CF20C260FD89B00276316 /* NetworkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CF20B260FD89B00276316 /* NetworkSession.swift */; };
 		839CF216260FDD6C00276316 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CF215260FDD6C00276316 /* RecipeService.swift */; };
 		839CF2422611F62000276316 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CF2412611F62000276316 /* CoreDataManager.swift */; };
 		839CF2472612154E00276316 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CF2462612154E00276316 /* CoreDataStack.swift */; };
@@ -38,6 +38,13 @@
 		83C5166E26208FF200EE329F /* NetworkManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C5166D26208FF200EE329F /* NetworkManagerMock.swift */; };
 		83C516722620905800EE329F /* NetworkManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C516712620905800EE329F /* NetworkManagerError.swift */; };
 		83C516782620913100EE329F /* RecipeUrlProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C516772620913100EE329F /* RecipeUrlProviderMock.swift */; };
+		83C5168626296C4800EE329F /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C5168526296C4800EE329F /* NetworkManagerTests.swift */; };
+		83C5168D2629716300EE329F /* FridgeManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C5168C2629716300EE329F /* FridgeManagerError.swift */; };
+		83C5169326297CE300EE329F /* RecipeServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C5169226297CE300EE329F /* RecipeServiceError.swift */; };
+		83C5169926297D2100EE329F /* ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C5169826297D2100EE329F /* ErrorAlert.swift */; };
+		83C5169D26297D9200EE329F /* NetworkSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C5169C26297D9200EE329F /* NetworkSessionProtocol.swift */; };
+		83C516A126297FB900EE329F /* ErrorAlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C516A026297FB900EE329F /* ErrorAlertManager.swift */; };
+		83C516A726298DCD00EE329F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C516A626298DCD00EE329F /* NetworkError.swift */; };
 		83CF62E02604902D005B0865 /* RecipesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF62DF2604902D005B0865 /* RecipesTableViewCell.swift */; };
 		83E255D4260F85960090778B /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E255D3260F85960090778B /* String.swift */; };
 		83F5AB3526173DB700EA376F /* FakeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F5AB3426173DB700EA376F /* FakeResponse.swift */; };
@@ -86,7 +93,7 @@
 		839CF1F3260FAB2100276316 /* FridgeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeTableViewCell.swift; sourceTree = "<group>"; };
 		839CF1FE260FB17C00276316 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		839CF206260FD2EA00276316 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
-		839CF20B260FD89B00276316 /* RecipeSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSession.swift; sourceTree = "<group>"; };
+		839CF20B260FD89B00276316 /* NetworkSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSession.swift; sourceTree = "<group>"; };
 		839CF215260FDD6C00276316 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
 		839CF2412611F62000276316 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		839CF2462612154E00276316 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -101,6 +108,13 @@
 		83C5166D26208FF200EE329F /* NetworkManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerMock.swift; sourceTree = "<group>"; };
 		83C516712620905800EE329F /* NetworkManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerError.swift; sourceTree = "<group>"; };
 		83C516772620913100EE329F /* RecipeUrlProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeUrlProviderMock.swift; sourceTree = "<group>"; };
+		83C5168526296C4800EE329F /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
+		83C5168C2629716300EE329F /* FridgeManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeManagerError.swift; sourceTree = "<group>"; };
+		83C5169226297CE300EE329F /* RecipeServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeServiceError.swift; sourceTree = "<group>"; };
+		83C5169826297D2100EE329F /* ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlert.swift; sourceTree = "<group>"; };
+		83C5169C26297D9200EE329F /* NetworkSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionProtocol.swift; sourceTree = "<group>"; };
+		83C516A026297FB900EE329F /* ErrorAlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertManager.swift; sourceTree = "<group>"; };
+		83C516A626298DCD00EE329F /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		83CF62DF2604902D005B0865 /* RecipesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesTableViewCell.swift; sourceTree = "<group>"; };
 		83E255D3260F85960090778B /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		83F5AB3426173DB700EA376F /* FakeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponse.swift; sourceTree = "<group>"; };
@@ -160,6 +174,8 @@
 			isa = PBXGroup;
 			children = (
 				839DB70E26160F1300392E3D /* FridgeManager.swift */,
+				83C516A026297FB900EE329F /* ErrorAlertManager.swift */,
+				83C5168B2629714D00EE329F /* Enum */,
 				839CF2402611F60D00276316 /* Storage */,
 				83C04D0625FF48BA008094BE /* DataModel */,
 				83C04CFB25FE626E008094BE /* Data */,
@@ -187,8 +203,8 @@
 			isa = PBXGroup;
 			children = (
 				83C04CDC25FE1F16008094BE /* BaseViewController.swift */,
-				83258E9625F2248D00B8E8AF /* FridgeViewController.swift */,
 				83258E8C25F222F500B8E8AF /* RecipesViewController.swift */,
+				83258E9625F2248D00B8E8AF /* FridgeViewController.swift */,
 				83258E9125F2232200B8E8AF /* RecipeDetailsViewController.swift */,
 			);
 			path = Controller;
@@ -251,6 +267,7 @@
 				83F5AB59261C444700EA376F /* CoreDataStackMock.swift */,
 				83C5166D26208FF200EE329F /* NetworkManagerMock.swift */,
 				83C516772620913100EE329F /* RecipeUrlProviderMock.swift */,
+				83C516A626298DCD00EE329F /* NetworkError.swift */,
 			);
 			path = recipleaseTests;
 			sourceTree = "<group>";
@@ -261,6 +278,8 @@
 				83C5166526208E9400EE329F /* NetworkManagerProtocol.swift */,
 				83C04D0F25FF4EAB008094BE /* RecipeUrlProviderProtocol.swift */,
 				839DB71626160F5500392E3D /* FridgeManagerDelegate.swift */,
+				83C5169826297D2100EE329F /* ErrorAlert.swift */,
+				83C5169C26297D9200EE329F /* NetworkSessionProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -279,9 +298,8 @@
 			isa = PBXGroup;
 			children = (
 				83C5166126208E6E00EE329F /* NetworkManager.swift */,
-				83C516712620905800EE329F /* NetworkManagerError.swift */,
 				839CF215260FDD6C00276316 /* RecipeService.swift */,
-				839CF20B260FD89B00276316 /* RecipeSession.swift */,
+				839CF20B260FD89B00276316 /* NetworkSession.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -302,6 +320,16 @@
 			path = DataModel;
 			sourceTree = "<group>";
 		};
+		83C5168B2629714D00EE329F /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				83C5168C2629716300EE329F /* FridgeManagerError.swift */,
+				83C516712620905800EE329F /* NetworkManagerError.swift */,
+				83C5169226297CE300EE329F /* RecipeServiceError.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		83E255D2260F857B0090778B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +345,7 @@
 				83F5AB69261C6B5F00EA376F /* FridgeManagerTests.swift */,
 				83F5AB462617417700EA376F /* RecipeServiceTests.swift */,
 				83F5AB5F261C468F00EA376F /* CoreDataManagerTests.swift */,
+				83C5168526296C4800EE329F /* NetworkManagerTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -511,16 +540,20 @@
 			files = (
 				83C5166226208E6E00EE329F /* NetworkManager.swift in Sources */,
 				83C516722620905800EE329F /* NetworkManagerError.swift in Sources */,
-				839CF20C260FD89B00276316 /* RecipeSession.swift in Sources */,
+				839CF20C260FD89B00276316 /* NetworkSession.swift in Sources */,
+				83C5168D2629716300EE329F /* FridgeManagerError.swift in Sources */,
 				83258E8D25F222F500B8E8AF /* RecipesViewController.swift in Sources */,
 				832C30BE262032F9008D6B9A /* GradientView.swift in Sources */,
 				839CF1FF260FB17C00276316 /* CustomButton.swift in Sources */,
 				839CF2422611F62000276316 /* CoreDataManager.swift in Sources */,
 				83C04CFD25FE6318008094BE /* RecipeUrlProvider.swift in Sources */,
 				83258E9225F2232200B8E8AF /* RecipeDetailsViewController.swift in Sources */,
+				83C5169326297CE300EE329F /* RecipeServiceError.swift in Sources */,
 				839CF216260FDD6C00276316 /* RecipeService.swift in Sources */,
 				83C04D1025FF4EAB008094BE /* RecipeUrlProviderProtocol.swift in Sources */,
+				83C5169926297D2100EE329F /* ErrorAlert.swift in Sources */,
 				839CF207260FD2EA00276316 /* Int.swift in Sources */,
+				83C5169D26297D9200EE329F /* NetworkSessionProtocol.swift in Sources */,
 				839CF1F4260FAB2100276316 /* FridgeTableViewCell.swift in Sources */,
 				83258E6125F220D900B8E8AF /* reciplease.xcdatamodeld in Sources */,
 				83258E5725F220D900B8E8AF /* AppDelegate.swift in Sources */,
@@ -532,6 +565,7 @@
 				83C04D0825FF48D8008094BE /* RecipeResponse.swift in Sources */,
 				839DB71726160F5500392E3D /* FridgeManagerDelegate.swift in Sources */,
 				83CF62E02604902D005B0865 /* RecipesTableViewCell.swift in Sources */,
+				83C516A126297FB900EE329F /* ErrorAlertManager.swift in Sources */,
 				83C5166626208E9400EE329F /* NetworkManagerProtocol.swift in Sources */,
 				83258E9725F2248D00B8E8AF /* FridgeViewController.swift in Sources */,
 			);
@@ -545,10 +579,12 @@
 				83F5AB5A261C444700EA376F /* CoreDataStackMock.swift in Sources */,
 				83F5AB3F26173E3000EA376F /* RecipeSessionFake.swift in Sources */,
 				83F5AB73261C9A5000EA376F /* FridgeManagerDelegateMock.swift in Sources */,
+				83C5168626296C4800EE329F /* NetworkManagerTests.swift in Sources */,
 				83C516782620913100EE329F /* RecipeUrlProviderMock.swift in Sources */,
 				83F5AB3526173DB700EA376F /* FakeResponse.swift in Sources */,
 				83F5AB3926173DD400EA376F /* FakeResponseData.swift in Sources */,
 				83F5AB60261C468F00EA376F /* CoreDataManagerTests.swift in Sources */,
+				83C516A726298DCD00EE329F /* NetworkError.swift in Sources */,
 				83F5AB472617417700EA376F /* RecipeServiceTests.swift in Sources */,
 				83C5166E26208FF200EE329F /* NetworkManagerMock.swift in Sources */,
 			);

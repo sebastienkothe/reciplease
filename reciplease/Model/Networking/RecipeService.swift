@@ -9,6 +9,8 @@ import Foundation
 
 final class RecipeService {
     
+    // MARK: - Initializer
+    
     // Used to be able to perform dependency injection
     init(networkManager: NetworkManagerProtocol = NetworkManager(),
          recipeUrlProvider: RecipeUrlProviderProtocol = RecipeUrlProvider()) {
@@ -16,8 +18,12 @@ final class RecipeService {
         self.recipeUrlProvider = recipeUrlProvider
     }
     
-    // MARK: - Internal Methods
-    func fetchRecipesFrom(_ ingredients: [String], completion: @escaping (Result<[Recipe], NetworkManagerError>) -> Void) {
+    // MARK: - Internal method
+    func fetchRecipesFrom(_ ingredients: [String], completion: @escaping (Result<[Recipe], RecipeServiceError>) -> Void) {
+        
+        guard !ingredients.isEmpty else {
+            return completion(.failure(.fetchedNoRecipes))
+        }
         
         guard let url = recipeUrlProvider.buildEdamamRecipeUrl(with: ingredients) else { return }
         
@@ -25,9 +31,12 @@ final class RecipeService {
             switch result {
             case .success(let response):
                 let recipes = response.hits.map { $0.recipe }
+                guard !recipes.isEmpty else {
+                    return completion(.failure(.fetchedNoRecipes))
+                }
                 return completion(.success(recipes))
-            case .failure(let error):
-                return completion(.failure(error))
+            case .failure:
+                return completion(.failure(.backendCallFailed))
             }
         }
     }
@@ -35,7 +44,5 @@ final class RecipeService {
     // MARK: - Private properties
     private let recipeUrlProvider: RecipeUrlProviderProtocol
     private let networkManager: NetworkManagerProtocol
-    
-
 }
 

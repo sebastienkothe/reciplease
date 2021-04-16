@@ -12,11 +12,10 @@ import CoreData
 final class CoreDataStackMock: CoreDataStack {
 
     // MARK: - Initializer
-
     convenience init() {
         self.init(modelName: "reciplease")
     }
-
+    
     override init(modelName: String) {
         super.init(modelName: modelName)
         let persistentStoreDescription = NSPersistentStoreDescription()

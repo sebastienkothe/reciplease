@@ -9,8 +9,11 @@ import Foundation
 @testable import reciplease
 
 class FridgeManagerDelegateMock: FridgeManagerDelegate {
+    
+    // MARK: - Internal property
     var didChangeIngredientsIsExecuted = false
     
+    // MARK: - Internal method
     func didChangeIngredients() {
         didChangeIngredientsIsExecuted = true
     }

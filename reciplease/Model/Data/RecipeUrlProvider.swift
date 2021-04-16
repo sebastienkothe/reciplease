@@ -8,6 +8,8 @@
 import Foundation
 
 class RecipeUrlProvider: RecipeUrlProviderProtocol {
+    
+    // MARK: - Internal method
     func buildEdamamRecipeUrl(with ingredients: [String]) -> URL? {
         
         var urlComponents = URLComponents()
@@ -26,6 +28,5 @@ class RecipeUrlProvider: RecipeUrlProviderProtocol {
         urlComponents.queryItems?.append(queryItem)
         
         return urlComponents.url
-        
     }
 }

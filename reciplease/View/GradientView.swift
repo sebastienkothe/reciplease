@@ -9,8 +9,7 @@ import UIKit
 
 class GradientView: UIView {
     
-    private var gradientLayer: CAGradientLayer?
-    
+    // MARK: - Internal methods
     override func layoutSubviews() {
         super.layoutSubviews()
         gradientLayer?.frame = frame
@@ -21,6 +20,10 @@ class GradientView: UIView {
         addAGradientToLayer()
     }
     
+    // MARK: - Private property
+    private var gradientLayer: CAGradientLayer?
+    
+    // MARK: - Private method
     private func addAGradientToLayer() {
         gradientLayer = CAGradientLayer()
         

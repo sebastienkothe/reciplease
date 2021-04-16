@@ -10,9 +10,11 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    // MARK: - Internal property
     var window: UIWindow?
     lazy var coreDataStack = CoreDataStack(modelName: "reciplease")
     
+    // MARK: - Internal methods
     func applicationDidEnterBackground(_ application: UIApplication) {
         coreDataStack.saveContext()
     }

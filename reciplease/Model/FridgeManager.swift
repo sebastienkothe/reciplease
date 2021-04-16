@@ -9,6 +9,7 @@ import Foundation
 
 class FridgeManager {
     
+    // MARK: - Internal properties
     weak var delegate: FridgeManagerDelegate?
     
     var ingredients: [String] = [] {
@@ -17,8 +18,13 @@ class FridgeManager {
         }
     }
     
+    // MARK: - Internal methods
     func addIngredient(ingredient: String) -> Result<Void, FridgeManagerError>  {
         let trimmedIngredient = ingredient.trimmingCharacters(in: .whitespaces)
+        
+        guard !trimmedIngredient.isEmpty else {
+            return .failure(.ingredientIsEmpty)
+        }
         
         if ingredients.contains(where: { $0.lowercased() == trimmedIngredient.lowercased() }) {
             return .failure(.ingredientAlreadyExist)
@@ -30,15 +36,5 @@ class FridgeManager {
     
     func clearFridge() {
         ingredients.removeAll()
-    }
-}
-
-enum FridgeManagerError: Error {
-    case ingredientAlreadyExist
-    
-    var title: String {
-        switch self {
-        case .ingredientAlreadyExist: return "This ingredient already exists"
-        }
     }
 }

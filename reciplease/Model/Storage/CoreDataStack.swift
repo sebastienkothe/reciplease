@@ -10,19 +10,17 @@ import CoreData
 
 class CoreDataStack {
     
-    // MARK: - Properties
-    private let modelName: String
-    public lazy var mainContext: NSManagedObjectContext = {
-        return persistentContainer.viewContext
-    }()
-    
     // MARK: - Initializer
-    public init(modelName: String) {
+    init(modelName: String) {
         self.modelName = modelName
     }
     
-    // MARK: - Methods
-    public lazy var persistentContainer: NSPersistentContainer = {
+    // MARK: - Internal properties
+    lazy var mainContext: NSManagedObjectContext = {
+        return persistentContainer.viewContext
+    }()
+    
+    lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: modelName)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -32,7 +30,8 @@ class CoreDataStack {
         return container
     }()
     
-    public func saveContext() {
+    // MARK: - Internal method
+    func saveContext() {
         guard mainContext.hasChanges else { return }
         do {
             try mainContext.save()
@@ -40,4 +39,7 @@ class CoreDataStack {
             print("Unresolved error \(error), \(error.userInfo)")
         }
     }
+    
+    // MARK: - Private properties
+    private let modelName: String
 }

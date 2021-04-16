@@ -9,6 +9,8 @@ import Foundation
 @testable import reciplease
 
 class RecipeUrlProviderMock: RecipeUrlProviderProtocol {
+    
+    // MARK: - Internal method
     func buildEdamamRecipeUrl(with ingredients: [String]) -> URL? {
         return nil
     }
