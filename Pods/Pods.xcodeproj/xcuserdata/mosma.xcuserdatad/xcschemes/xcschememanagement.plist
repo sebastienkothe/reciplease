@@ -14,12 +14,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-reciplease.xcscheme</key>
+		<key>Pods-reciplease-recipleaseTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-recipleaseTests.xcscheme</key>
+		<key>Pods-reciplease.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

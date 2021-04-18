@@ -1,4 +1,4 @@
-framework module Pods_reciplease {
+module Pods_reciplease {
   umbrella header "Pods-reciplease-umbrella.h"
 
   export *

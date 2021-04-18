@@ -1,16 +1,12 @@
-platform :ios, '11.0'
+platform :ios, '14.4'
 
-source 'https://github.com/CocoaPods/Specs.git'
 target 'reciplease' do
 
-  use_frameworks!
-
-  pod 'Alamofire', '4.9'
+  pod 'Alamofire', '5.4.2'
   pod 'Kingfisher', '~> 6.2.1'
 
   target 'recipleaseTests' do
-    inherit! :search_paths
-    pod 'Alamofire', '4.9'
+    pod 'Alamofire', '5.4.2'
   end
 
 end
