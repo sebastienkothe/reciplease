@@ -39,7 +39,7 @@ class RecipeServiceTests: XCTestCase {
     }
     
     func testFetchRecipesFromShouldReturnAnSpecificError() {
-        let networkManagerMock = NetworkManagerMock(result: .failure(.failedToDecode))
+        let networkManagerMock = NetworkManagerMock<RecipeResponse>(result: .failure(.failedToDecode))
         
         let recipeService = RecipeService(networkManager: networkManagerMock)
         
@@ -56,7 +56,7 @@ class RecipeServiceTests: XCTestCase {
     }
     
     func testBuildEdamamRecipeUrlShouldFail() {
-        let networkManagerMock = NetworkManagerMock(result: .failure(.failedToDecode))
+        let networkManagerMock = NetworkManagerMock<RecipeResponse>(result: .failure(.failedToDecode))
         let recipeUrlProvider = RecipeUrlProviderMock()
         let recipeService = RecipeService(networkManager: networkManagerMock, recipeUrlProvider: recipeUrlProvider)
         
@@ -66,6 +66,39 @@ class RecipeServiceTests: XCTestCase {
                 XCTAssertNil(recipe)
             case .failure(let error):
                 XCTAssertNil(error)
+            }
+        }
+    }
+    
+    func testFetchRecipesFromShouldReturnFetchedNoRecipesError() {
+        let networkManagerMock = NetworkManagerMock<RecipeResponse>(result: .failure(.failedToDecode))
+        
+        let recipeService = RecipeService(networkManager: networkManagerMock)
+        
+        recipeService.fetchRecipesFrom([]) { (result) in
+            switch result {
+            case .failure(let error):
+                XCTAssertEqual(RecipeServiceError.fetchedNoRecipes, error)
+                
+            case .success:
+                XCTFail()
+            }
+        }
+    }
+    
+    func testFetchRecipesFromShouldReturnFetchedNoRecipes() {
+        let recipeResponse = RecipeResponse(hits: [])
+        let networkManagerMock = NetworkManagerMock<RecipeResponse>(result: .success(recipeResponse))
+        
+        let recipeService = RecipeService(networkManager: networkManagerMock)
+        
+        recipeService.fetchRecipesFrom([]) { (result) in
+            switch result {
+            case .failure(let error):
+                XCTAssertEqual(RecipeServiceError.fetchedNoRecipes, error)
+                
+            case .success:
+                XCTFail()
             }
         }
     }

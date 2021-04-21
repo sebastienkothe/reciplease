@@ -79,4 +79,11 @@ final class CoreDataManagerTests: XCTestCase {
         let gratedTomatoIsFavorite = coreDataManager.checkIfRecipeIsFavorite(recipeTitle: gratedTomato.label, url: gratedTomato.url)
         XCTAssertFalse(gratedTomatoIsFavorite)
     }
+    
+    
+    func testCoreDataStack() {
+        let coreDataStack = CoreDataStack(modelName: "test")
+        _ = coreDataStack.persistentContainer
+        XCTAssertTrue(true)
+    }
 }

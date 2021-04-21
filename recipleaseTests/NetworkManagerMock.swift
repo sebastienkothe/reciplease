@@ -8,10 +8,10 @@
 import Foundation
 @testable import reciplease
 
-class NetworkManagerMock: NetworkManagerProtocol {
+class NetworkManagerMock<U: Codable>: NetworkManagerProtocol {
     
     // MARK: - Initializer
-    init(result: Result<RecipeResponse, NetworkManagerError>) {
+    init(result: Result<U, NetworkManagerError>) {
         self.result = result
     }
     
@@ -21,5 +21,5 @@ class NetworkManagerMock: NetworkManagerProtocol {
     }
     
     // MARK: - Private property
-    private let result: Result<RecipeResponse, NetworkManagerError>
+    private let result: Result<U, NetworkManagerError>
 }

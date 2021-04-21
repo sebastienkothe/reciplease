@@ -63,4 +63,21 @@ class NetworkManagerTests: XCTestCase {
             }
         }
     }
+    
+    func testFetchShouldNotReturnInvalidResponse() {
+        let url = URL(string: "testurl.com")!
+        let urlResponse = HTTPURLResponse(url: url, statusCode: 500, httpVersion: nil, headerFields: nil)
+        let fakeResponse = FakeResponse(response: urlResponse, data: nil, error: nil)
+        let networkSessionFake = RecipeSessionFake(fakeResponse: fakeResponse)
+        let networkManager = NetworkManager(networkSession: networkSessionFake)
+        
+        networkManager.fetch(url: url) { (result: Result<RecipeResponse, NetworkManagerError>) in
+            switch result {
+            case .failure(let error):
+                XCTAssertEqual(error, .invalidResponse)
+            case .success:
+                XCTFail()
+            }
+        }
+    }
 }

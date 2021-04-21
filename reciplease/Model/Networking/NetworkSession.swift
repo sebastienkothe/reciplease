@@ -12,8 +12,8 @@ class NetworkSession: NetworkSessionProtocol {
     // MARK: - Internal method
     
     ///Used to make a request with Alamofire
-    func fetch(url: URL, completion: @escaping (DataResponse<Any>) -> Void) {
-        Alamofire.request(url).responseJSON { dataResponse in
+    func fetch(url: URL, completion: @escaping (DataResponse<Any, AFError>) -> Void) {
+        AF.request(url).responseJSON { dataResponse in
             completion(dataResponse)
         }
     }

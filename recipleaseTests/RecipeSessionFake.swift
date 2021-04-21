@@ -17,15 +17,35 @@ class RecipeSessionFake: NetworkSessionProtocol {
     }
     
     // MARK: - Internal method
-    func fetch(url: URL, completion: @escaping (DataResponse<Any>) -> Void) {
-        let httpResponse = fakeResponse.response
-        let data = fakeResponse.data
-        let error = fakeResponse.error
-        let result = Request.serializeResponseJSON(options: .allowFragments, response: httpResponse, data: data, error: error)
+    func fetch(url: URL, completion: @escaping (DataResponse<Any, AFError>) -> Void) {
+//        let result = Request.serializeResponseJSON(options: .allowFragments, response: httpResponse, data: data, error: error)
         
-        let urlRequest = URLRequest(url: url)
+        let serializedResult: Result<Any, AFError>
         
-        completion(DataResponse(request: urlRequest, response: httpResponse, data: data, result: result))
+        do {
+            let serialized = try JSONResponseSerializer().serialize(
+                request: URLRequest(url: url),
+                response: fakeResponse.response,
+                data: fakeResponse.data,
+                error: fakeResponse.error
+            )
+            serializedResult = .success(serialized)
+        } catch {
+            serializedResult = .failure(error as! AFError)
+        }
+        
+        
+
+        let dataResponse = DataResponse(
+            request: URLRequest(url: url),
+            response: fakeResponse.response,
+            data: fakeResponse.data,
+            metrics: nil,
+            serializationDuration: 10.0,
+            result: serializedResult
+        )
+        
+        completion(dataResponse)
     }
     
     // MARK: - Private properties

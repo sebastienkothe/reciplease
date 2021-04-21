@@ -8,5 +8,5 @@
 import Alamofire
 
 protocol NetworkSessionProtocol {
-    func fetch(url: URL, completion: @escaping (DataResponse<Any>) -> Void)
+    func fetch(url: URL, completion: @escaping (DataResponse<Any, AFError>) -> Void)
 }
