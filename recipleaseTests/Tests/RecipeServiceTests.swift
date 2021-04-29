@@ -86,13 +86,13 @@ class RecipeServiceTests: XCTestCase {
         }
     }
     
-    func testFetchRecipesFromShouldReturnFetchedNoRecipes() {
+    func testFetchRecipesFromShouldReturnNoRecipes() {
         let recipeResponse = RecipeResponse(hits: [])
         let networkManagerMock = NetworkManagerMock<RecipeResponse>(result: .success(recipeResponse))
         
         let recipeService = RecipeService(networkManager: networkManagerMock)
         
-        recipeService.fetchRecipesFrom([]) { (result) in
+        recipeService.fetchRecipesFrom(["/"]) { (result) in
             switch result {
             case .failure(let error):
                 XCTAssertEqual(RecipeServiceError.fetchedNoRecipes, error)

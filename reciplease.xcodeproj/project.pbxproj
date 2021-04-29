@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -207,8 +207,8 @@
 			isa = PBXGroup;
 			children = (
 				83C04CDC25FE1F16008094BE /* BaseViewController.swift */,
-				83258E8C25F222F500B8E8AF /* RecipesViewController.swift */,
 				83258E9625F2248D00B8E8AF /* FridgeViewController.swift */,
+				83258E8C25F222F500B8E8AF /* RecipesViewController.swift */,
 				83258E9125F2232200B8E8AF /* RecipeDetailsViewController.swift */,
 			);
 			path = Controller;

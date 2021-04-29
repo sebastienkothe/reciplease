@@ -24,12 +24,6 @@ class FridgeManagerTests: XCTestCase {
         fridgeManager.delegate = fridgeManagerDelegateMock
     }
     
-    func testIngredientsShouldExecuteDidChangeIngredients() {
-        fridgeManager.ingredients.append("Tomato")
-        
-        XCTAssertTrue(fridgeManagerDelegateMock.didChangeIngredientsIsExecuted)
-    }
-    
     func testIngredientsShouldContainANewValue() {
         
         switch fridgeManager.addIngredient(ingredient: "Lemon") {
@@ -75,5 +69,11 @@ class FridgeManagerTests: XCTestCase {
             XCTAssertNotNil(error)
             XCTAssertEqual(error.title, FridgeManagerError.ingredientAlreadyExist.title)
         }
+    }
+    
+    func testIngredientsShouldExecuteDidChangeIngredients() {
+        fridgeManager.ingredients.append("Tomato")
+        
+        XCTAssertTrue(fridgeManagerDelegateMock.didChangeIngredientsIsExecuted)
     }
 }
